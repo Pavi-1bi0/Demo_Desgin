@@ -1,0 +1,118 @@
+.package-section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .left-title {
+        color: orange;
+        text-decoration: underline;
+        position: absolute;
+        top:11rem;
+    }
+
+    .software-package {
+        margin: 20px 0;
+        border-radius: 5px;
+        color: white;
+        border: 2px solid yellow;
+        width: 100%;
+        max-height: 400px;
+        /* Set a fixed height for the scrollable area */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+
+        .package-item {
+            padding: 15px;
+            border-bottom: 2px solid white;
+            border-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            text-align: justify;
+            gap: 30px;
+
+            &:hover {
+                background-color: #3498db;
+            }
+
+            .package-number {
+                color: yellow;
+                font-size: 15px;
+                font-weight: 500;
+                // padding-right: 10px;
+            }
+
+            .package-details {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+
+                .package-name {
+                    font-weight: bold;
+                    color: yellow;
+                    margin-bottom: 5px;
+                }
+
+                .details-row {
+                    display: flex;
+                    justify-content: space-between; /* Align elements side by side */
+                    align-items: center; /* Vertically center the items */
+                    gap: 20px; /* Space between the items */
+
+                    .review-date {
+                        font-size: 13px;
+                        color: white;
+                        text-wrap: nowrap;
+                    }
+                    .package-description{
+                        font-size: 15px;
+                    }
+                }
+            }
+
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: yellow;
+                color: black;
+                border: none;
+                border-radius: 15px;
+                cursor: pointer;
+                height: 35px;
+                padding: 0 15px;
+
+                .go-to-cmdb {
+                    color: black;
+                    text-decoration: none;
+                    font-size: 10px;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .package-item:last-child {
+            border-bottom: none;
+            /* Remove border from the last item */
+        }
+    }
+
+    .add-package-btn {
+        background-color: yellow;
+        color: black;
+        border: none;
+        border-radius: 15px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+
+        &:hover {
+            background-color: #f1c40f;
+        }
+    }
+}

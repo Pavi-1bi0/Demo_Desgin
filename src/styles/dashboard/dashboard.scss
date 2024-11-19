@@ -1,0 +1,53 @@
+@import '../../styles/scss/abstract/variables';
+
+.software-review-center {
+    background-color: $primary-color;
+    color: $primary-color;
+    padding: 20px;
+    border-radius: 10px;
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+
+        h1 {
+            color: $highlight-color;
+            font-size: 30px;
+            text-align: justify;
+        }
+
+        .sub-header {
+            display: flex;
+            flex-direction: row;
+            gap: 8rem;
+            img{
+                width: 5rem;
+                object-fit: cover;
+                height: 5rem;
+            }
+            p {
+                font-size: 18px;
+                color: $secondary-color;
+                font-weight: 700;
+                strong{
+                    font-weight: 500;
+                    color: $accent-color;
+                }
+                input{
+                    width: 20px;
+                    height: 15px;
+                    background-color: initial;
+                }
+            }
+        }
+    }
+
+    .package-section {
+      
+       display: flex;
+    }
+    .ticket-section{
+        display: flex;
+        flex-direction: row;
+    }
+}

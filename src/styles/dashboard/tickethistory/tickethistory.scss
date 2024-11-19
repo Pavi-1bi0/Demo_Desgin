@@ -1,0 +1,75 @@
+.tickect-page {
+    display: flex;
+    flex-direction: row;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        position: absolute;
+
+        h2 {
+            font-size: 17px;
+            color: #7bea7b;
+            margin: 0;
+            text-decoration: underline;
+        }
+
+        .ticket-count {
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+        }
+    }
+
+    .ticket-history-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        border: 2px solid limegreen;
+        background-color: black;
+        border-radius: 5px;
+        color: #fff;
+      height: 14rem;
+      margin-top: 40px;
+        padding: 10px;
+
+        
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            thead {
+                th {
+                    color: yellow;
+                    text-align: left;
+                    // border-bottom: 2px solid limegreen;
+                    padding: 8px;
+                    font-size: 0.9rem;
+                }
+            }
+
+            tbody {
+                tr {
+                    &:hover {
+                        background-color: #333;
+                    }
+
+                    td {
+                        color: white;
+                        padding: 8px;
+                        font-size: 0.85rem;
+                        border-bottom: 1px solid limegreen;
+                    }
+                }
+            }
+        }
+    }
+}
