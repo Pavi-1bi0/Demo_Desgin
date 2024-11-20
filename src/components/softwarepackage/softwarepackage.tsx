@@ -9,11 +9,10 @@ const SoftwarePackage: React.FC = () => {
         { name: 'IBM Operational Decision Manager - Rule', lastReviewDate: '6/29/2023', lorem: 'Heres the updated code for your component' }
     ]);
 
-    const addPackage = () => {
-        setPackages([
-            ...packages,
-            { name: 'New Package ' + (packages.length + 1), lastReviewDate: '11/19/2024', lorem: 'Heres the updated code for your component ' }
-        ]);
+    const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
+
+    const handleCardClick = (index: number) => {
+        setSelectedCardIndex(index === selectedCardIndex ? null : index); // Toggle selection for the same card, otherwise select the new card
     };
 
     return (
@@ -21,12 +20,21 @@ const SoftwarePackage: React.FC = () => {
             <h3 className="left-title">Client Software Package</h3>
             <div className="software-package">
                 {packages.map((pkg, index) => (
-                    <div key={index} className="package-item">
+                    <div
+                        key={index}
+                        className={`package-item card ${selectedCardIndex === index ? 'selected' : ''}`}
+                        onClick={() => handleCardClick(index)}
+                        style={{
+                            // backgroundColor: selectedCardIndex === index ? 'blueviolet' : 'white',
+                            color: selectedCardIndex === index ? 'white' : 'black',
+                           
+                        }}
+                    >
                         <span className="package-number">{index + 1}. </span>
                         <div className="package-details">
                             <span className="package-name">{pkg.name}</span>
                             <div className="details-row">
-                                <span className="review-date">LastReviewDate: {pkg.lastReviewDate}</span>
+                                <span className="review-date">Last Review Date: {pkg.lastReviewDate}</span>
                                 <span className="package-description">Lorem: {pkg.lorem}</span>
                             </div>
                         </div>
@@ -36,9 +44,6 @@ const SoftwarePackage: React.FC = () => {
                     </div>
                 ))}
             </div>
-            {/* <button className="add-package-btn" onClick={addPackage}>
-                Add Package
-            </button> */}
         </div>
     );
 };

@@ -10,13 +10,15 @@
         color: orange;
         position: absolute;
         text-decoration: underline;
-        top: 11rem;
+        top: 8rem;
+        font-size: 13px;
     }
 
     .package-detail {
         display: flex;
         text-align: justify;
         gap: 50px;
+        margin-top: -38px;
 
         .detail-item {
             display: flex;
@@ -53,14 +55,15 @@
         color: orange;
         position: absolute;
         text-decoration: underline;
-        top: 19rem;
+        top: 13.5rem;
+        font-size: 13px;
     }
 
     .owner-details {
         display: flex;
         text-align: justify;
         gap: 50px;
-        margin-top: 3rem;
+        margin-top: 1.5rem;
 
         .detail-item {
             display: flex;
@@ -99,7 +102,8 @@
             color: orange;
             position: absolute;
             text-decoration: underline;
-            top: 26rem;
+            top: 19rem;
+            font-size: 15px;
         }
 
         input {

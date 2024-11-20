@@ -8,22 +8,21 @@
         color: orange;
         text-decoration: underline;
         position: absolute;
-        top:11rem;
+        top: 130px;
+        font-size: 13px;
     }
 
     .software-package {
-        margin: 20px 0;
         border-radius: 5px;
         color: white;
         border: 2px solid yellow;
         width: 100%;
-        max-height: 400px;
+        max-height: 360px;
         /* Set a fixed height for the scrollable area */
-        overflow-y: auto;
-        /* Enable vertical scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
 
         .package-item {
-            padding: 15px;
+            padding: 10px;
             border-bottom: 2px solid white;
             border-radius: 5px;
             display: flex;
@@ -31,23 +30,32 @@
             justify-content: space-between;
             text-align: justify;
             gap: 30px;
+            background-color: #333; /* Default background for unselected items */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
 
-            &:hover {
-                background-color: #3498db;
+            // &:hover {
+            //     background-color: ; /* Slight highlight on hover */
+            // }
+
+            &.selected {
+                background-color: blueviolet; /* Selected item background */
+                color: white; /* Ensure text is readable on violet */
+                border: 2px solid #1976d2; /* Highlight border for selected */
+                transform: translateY(-2px); /* Slight pop-up effect */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             }
 
             .package-number {
                 color: yellow;
                 font-size: 15px;
                 font-weight: 500;
-                // padding-right: 10px;
             }
 
             .package-details {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-
 
                 .package-name {
                     font-weight: bold;
@@ -64,10 +72,12 @@
                     .review-date {
                         font-size: 13px;
                         color: white;
-                        text-wrap: nowrap;
+                        white-space: nowrap;
                     }
-                    .package-description{
+
+                    .package-description {
                         font-size: 15px;
+                        color: white;
                     }
                 }
             }

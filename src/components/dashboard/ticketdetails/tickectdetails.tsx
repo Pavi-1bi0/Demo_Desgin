@@ -5,7 +5,7 @@ const Tickectdetails: React.FC = () => {
   return (
     <div className="servicenow-details">
       <h3 className="title">
-        ServiceNow Ticket Details <span className="ticket-number">9</span>
+        ServiceNow Ticket Details 
       </h3>
       <div className="details-container">
         <div className="detail-row">

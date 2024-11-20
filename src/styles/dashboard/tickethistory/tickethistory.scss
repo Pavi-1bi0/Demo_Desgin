@@ -1,6 +1,7 @@
 .tickect-page {
     display: flex;
     flex-direction: row;
+    width: 100%;
     .header {
         display: flex;
         justify-content: space-between;
@@ -9,10 +10,11 @@
         position: absolute;
 
         h2 {
-            font-size: 17px;
+            font-size: 13px;
             color: #7bea7b;
             margin: 0;
             text-decoration: underline;
+            margin-top: 40px;
         }
 
         .ticket-count {
@@ -31,15 +33,16 @@
 
     .ticket-history-container {
         width: 100%;
-        max-width: 600px;
+        // max-width: 600px;
         margin: 20px auto;
         border: 2px solid limegreen;
-        background-color: black;
+        // background-color: black;
         border-radius: 5px;
         color: #fff;
-      height: 14rem;
-      margin-top: 40px;
+    //   height: 14rem;
+      margin-top: 50px;
         padding: 10px;
+        max-height: 150px;
 
         
         .ticket-table {
@@ -66,7 +69,7 @@
                         color: white;
                         padding: 8px;
                         font-size: 0.85rem;
-                        border-bottom: 1px solid limegreen;
+                        border-bottom: 1px solid white;
                     }
                 }
             }
