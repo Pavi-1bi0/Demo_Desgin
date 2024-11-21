@@ -1,3 +1,5 @@
+@import '../scss/abstract/variables';
+
 .package-section {
     margin-bottom: 20px;
     display: flex;
@@ -5,7 +7,7 @@
     width: 100%;
 
     .left-title {
-        color: orange;
+        color: $accent-color;
         text-decoration: underline;
         position: absolute;
         top: 130px;
@@ -14,8 +16,8 @@
 
     .software-package {
         border-radius: 5px;
-        color: white;
-        border: 2px solid yellow;
+        color: $secondary-color;
+        border: 2px solid $accent-color;
         width: 100%;
         max-height: 360px;
         /* Set a fixed height for the scrollable area */
@@ -23,7 +25,7 @@
 
         .package-item {
             padding: 10px;
-            border-bottom: 2px solid white;
+            border-bottom: 2px solid $secondary-color;
             border-radius: 5px;
             display: flex;
             align-items: flex-start;
@@ -40,14 +42,14 @@
 
             &.selected {
                 background-color: blueviolet; /* Selected item background */
-                color: white; /* Ensure text is readable on violet */
+                color: $secondary-color; /* Ensure text is readable on violet */
                 border: 2px solid #1976d2; /* Highlight border for selected */
                 transform: translateY(-2px); /* Slight pop-up effect */
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             }
 
             .package-number {
-                color: yellow;
+                color:$accent-color;
                 font-size: 15px;
                 font-weight: 500;
             }
@@ -59,7 +61,7 @@
 
                 .package-name {
                     font-weight: bold;
-                    color: yellow;
+                    color: $text-color;
                     margin-bottom: 5px;
                 }
 
@@ -71,13 +73,13 @@
 
                     .review-date {
                         font-size: 13px;
-                        color: white;
+                        color: $secondary-color;
                         white-space: nowrap;
                     }
 
                     .package-description {
                         font-size: 15px;
-                        color: white;
+                        color: $secondary-color;
                     }
                 }
             }
@@ -86,7 +88,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: yellow;
+                background-color: $accent-color;
                 color: black;
                 border: none;
                 border-radius: 15px;
@@ -95,7 +97,7 @@
                 padding: 0 15px;
 
                 .go-to-cmdb {
-                    color: black;
+                    color: $default-colr;
                     text-decoration: none;
                     font-size: 10px;
 
@@ -113,8 +115,8 @@
     }
 
     .add-package-btn {
-        background-color: yellow;
-        color: black;
+        background-color: $accent-color;
+        color: $default-colr;
         border: none;
         border-radius: 15px;
         padding: 10px 20px;

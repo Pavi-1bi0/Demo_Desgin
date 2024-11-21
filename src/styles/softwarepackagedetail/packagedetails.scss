@@ -1,13 +1,14 @@
+@import '../scss/abstract/variables';
+
 .software-package-details {
-    // background: #34495e;  
     margin: 20px 0;
     padding: 15px;
     border-radius: 5px;
-    color: white;
+    color: $secondary-color;
     width: 100%;
 
     .right-title {
-        color: orange;
+        color: $accent-color;
         position: absolute;
         text-decoration: underline;
         top: 8rem;
@@ -25,34 +26,32 @@
             flex-direction: column;
             gap: 5px;
 
-            .ad {
-                margin-left: -4rem;
-            }
-
+            .ad,
             .ad-str {
                 margin-left: -4rem;
             }
 
             span {
                 display: flex;
-                font-size: 13px
+                font-size: 13px;
+                color: $secondary-color;
             }
 
             strong {
-                color: rgb(240, 240, 84);
+                color: $text-color;
                 font-size: 10px;
             }
 
             input {
                 width: 8rem;
                 height: 20px;
-                border: 1px solid red;
+                border: 1px solid $highlight-color;
             }
         }
     }
 
     .owner-title {
-        color: orange;
+        color: $accent-color;
         position: absolute;
         text-decoration: underline;
         top: 13.5rem;
@@ -70,36 +69,33 @@
             flex-direction: column;
             gap: 5px;
 
-            .ad {
-                margin-left: -4rem;
-            }
-
+            .ad,
             .ad-str {
                 margin-left: -4rem;
             }
 
             span {
                 display: flex;
-                font-size: 13px
+                font-size: 13px;
+                color: $secondary-color;
             }
 
             strong {
-                color: rgb(240, 240, 84);
+                color: $text-color;
                 font-size: 10px;
             }
 
             input {
                 width: 8rem;
                 height: 20px;
-                border: 1px solid red;
+                border: 1px solid $highlight-color;
             }
         }
-
     }
 
     .title-sec {
         .user-title {
-            color: orange;
+            color: $accent-color;
             position: absolute;
             text-decoration: underline;
             top: 19rem;
@@ -110,27 +106,22 @@
             width: 20px;
             height: 15px;
             margin-top: 15px;
-            /* border: yellow; */
-            border: 1px solid yellow;
+            border: 1px solid $accent-color;
         }
     }
-
-
 
     .user-list-container {
         max-height: 150px;
         overflow-y: auto;
-        border: 1px solid yellow;
+        border: 1px solid $accent-color;
         padding: 8px;
-        // background-color: black;
         height: 7rem;
 
         .user-list {
             .user-row {
                 display: flex;
                 align-items: center;
-                // padding: 8px;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid $secondary-color;
 
                 &:last-child {
                     border-bottom: none;
@@ -140,18 +131,14 @@
                     width: 30px;
                     text-align: center;
                     font-weight: bold;
-                    color: yellow;
-
-                    // &:hover{
-                    //     background-color: yellow;
-                    // }
+                    color: $text-color;
                 }
 
                 .user-details {
                     flex-grow: 1;
                     display: flex;
                     justify-content: space-between;
-                    color: white;
+                    color: $secondary-color;
 
                     .user-info,
                     .user-meta {
@@ -162,24 +149,24 @@
                         }
 
                         a {
-                            color: lightblue;
+                            color: $primary-color;
                             text-decoration: none;
                         }
                     }
 
                     .user-name {
-                        color: yellow;
+                        color: $text-color;
                     }
 
                     .user-mail {
                         a {
-                            color: white;
+                            color: $secondary-color;
                         }
                     }
 
                     .remove-option {
                         label {
-                            color: red;
+                            color: $highlight-color;
                             font-size: 0.85rem;
 
                             input {
@@ -187,7 +174,6 @@
                             }
                         }
                     }
-
                 }
             }
         }
@@ -195,22 +181,16 @@
 
     .footer {
         text-align: center;
-        margin-top:7px;
+        margin-top: 7px;
+
         .review-complete {
-            background-color: red;
-            color: white;
+            background-color: $highlight-color;
+            color: $secondary-color;
             padding: 8px 16px;
-            border-radius: 4px;
+            border-radius: 12px;
             border: none;
             cursor: pointer;
             width: 100%;
-            border-radius: 12px;
-
-            // &:hover {
-            //     background-color: darkred;
-            // }
         }
     }
-
-    
 }

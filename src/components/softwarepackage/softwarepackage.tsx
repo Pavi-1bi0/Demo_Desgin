@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../styles/softwarepackage/package.scss';
+import SoftwarePackageProps from '../../@types/interface/softwarepackage/softwarepackages';
 
-const SoftwarePackage: React.FC = () => {
-    const [packages, setPackages] = useState([
-        { name: 'HYPERV STOP', lastReviewDate: '5/29/2023', lorem: 'Heres the updated code for your component' },
-        { name: 'Google Chrome', lastReviewDate: '5/30/2022', lorem: 'Heres the updated code for your component ' },
-        { name: 'Image Ware Form Manager', lastReviewDate: '5/20/2023', lorem: 'Heres the updated code for your component' },
-        { name: 'IBM Operational Decision Manager - Rule', lastReviewDate: '6/29/2023', lorem: 'Heres the updated code for your component' }
-    ]);
-
-    const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
-
+const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedCardIndex, onCardSelect }) => {
     const handleCardClick = (index: number) => {
-        setSelectedCardIndex(index === selectedCardIndex ? null : index); // Toggle selection for the same card, otherwise select the new card
+        onCardSelect(index === selectedCardIndex ? null : index); // Toggle selection for the same card
     };
 
     return (
@@ -25,9 +17,7 @@ const SoftwarePackage: React.FC = () => {
                         className={`package-item card ${selectedCardIndex === index ? 'selected' : ''}`}
                         onClick={() => handleCardClick(index)}
                         style={{
-                            // backgroundColor: selectedCardIndex === index ? 'blueviolet' : 'white',
                             color: selectedCardIndex === index ? 'white' : 'black',
-                           
                         }}
                     >
                         <span className="package-number">{index + 1}. </span>

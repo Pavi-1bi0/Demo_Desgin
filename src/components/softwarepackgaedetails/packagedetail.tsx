@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/softwarepackagedetail/packagedetails.scss';
+import User from '../../@types/interface/packagedetails/packagedetails';
 
-interface User {
-    id: number;
-    name: string;
-    status: string;
-    department: string;
-    email: string;
-}
 
 const PackageDetails: React.FC = () => {
     const [users, setUsers] = useState<User[]>([

@@ -1,3 +1,5 @@
+@import '../scss/abstract/variables';
+
 .tickect-page {
     display: flex;
     flex-direction: row;
@@ -11,7 +13,7 @@
 
         h2 {
             font-size: 13px;
-            color: #7bea7b;
+            color:$header-color;
             margin: 0;
             text-decoration: underline;
             margin-top: 40px;
@@ -19,7 +21,7 @@
 
         .ticket-count {
             background-color: blue;
-            color: white;
+            color: $secondary-color;
             font-weight: bold;
             border-radius: 50%;
             width: 30px;
@@ -35,10 +37,10 @@
         width: 100%;
         // max-width: 600px;
         margin: 20px auto;
-        border: 2px solid limegreen;
+        border: 2px solid $header-color;
         // background-color: black;
         border-radius: 5px;
-        color: #fff;
+        color:$secondary-color;
     //   height: 14rem;
       margin-top: 50px;
         padding: 10px;
@@ -51,7 +53,7 @@
 
             thead {
                 th {
-                    color: yellow;
+                    color: $text-color;
                     text-align: left;
                     // border-bottom: 2px solid limegreen;
                     padding: 8px;
@@ -66,10 +68,10 @@
                     }
 
                     td {
-                        color: white;
+                        color: $secondary-color;
                         padding: 8px;
                         font-size: 0.85rem;
-                        border-bottom: 1px solid white;
+                        border-bottom: 1px solid $secondary-color;
                     }
                 }
             }

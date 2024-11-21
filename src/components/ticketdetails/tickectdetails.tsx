@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/dashboard/tickectdetails/ticketdetails.scss';
+import '../../styles/tickectdetails/ticketdetails.scss';
 
 const Tickectdetails: React.FC = () => {
   return (
