@@ -1,4 +1,5 @@
 @import '../scss/abstract/variables';
+@import '../scss/abstract/break_points';
 
 .tickect-page {
     display: flex;
@@ -36,7 +37,7 @@
     .ticket-history-container {
         width: 100%;
         // max-width: 600px;
-        margin: 20px auto;
+        // margin: 20px auto;
         border: 2px solid $header-color;
         // background-color: black;
         border-radius: 5px;
@@ -76,5 +77,21 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width:$screen-xl-min) {
+    .tickect-page{
+        width: 54%;
+    }
+}
+@media screen and (max-width:$screen-lg-min){
+    .tickect-page{
+        width: 88%;
+    }
+}
+@media screen and (max-width:$screen-sm) {
+    .tickect-page{
+        width: 85%;
     }
 }

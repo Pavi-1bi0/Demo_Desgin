@@ -1,4 +1,5 @@
 @import '../scss/abstract/variables';
+@import '../scss/abstract/break_points';
 
 .package-section {
     margin-bottom: 20px;
@@ -10,7 +11,7 @@
         color: $accent-color;
         text-decoration: underline;
         position: absolute;
-        top: 130px;
+        top: 121px;
         font-size: 13px;
     }
 
@@ -21,7 +22,8 @@
         width: 100%;
         max-height: 360px;
         /* Set a fixed height for the scrollable area */
-        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
 
         .package-item {
             padding: 10px;
@@ -32,7 +34,8 @@
             justify-content: space-between;
             text-align: justify;
             gap: 30px;
-            background-color: #333; /* Default background for unselected items */
+            background-color: #333;
+            /* Default background for unselected items */
             cursor: pointer;
             transition: all 0.3s ease-in-out;
 
@@ -41,15 +44,19 @@
             // }
 
             &.selected {
-                background-color: blueviolet; /* Selected item background */
-                color: $secondary-color; /* Ensure text is readable on violet */
-                border: 2px solid #1976d2; /* Highlight border for selected */
-                transform: translateY(-2px); /* Slight pop-up effect */
+                background-color: blueviolet;
+                /* Selected item background */
+                color: $secondary-color;
+                /* Ensure text is readable on violet */
+                border: 2px solid #1976d2;
+                /* Highlight border for selected */
+                transform: translateY(-2px);
+                /* Slight pop-up effect */
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             }
 
             .package-number {
-                color:$accent-color;
+                color: $accent-color;
                 font-size: 15px;
                 font-weight: 500;
             }
@@ -67,9 +74,12 @@
 
                 .details-row {
                     display: flex;
-                    justify-content: space-between; /* Align elements side by side */
-                    align-items: center; /* Vertically center the items */
-                    gap: 20px; /* Space between the items */
+                    justify-content: space-between;
+                    /* Align elements side by side */
+                    align-items: center;
+                    /* Vertically center the items */
+                    gap: 20px;
+                    /* Space between the items */
 
                     .review-date {
                         font-size: 13px;
@@ -125,6 +135,33 @@
 
         &:hover {
             background-color: #f1c40f;
+        }
+    }
+}
+
+@media screen and (max-width:$screen-xl-min) {
+    .package-section {
+        width: 90%;
+        .software-package {
+            max-height: 400px;
+        }
+    }
+}
+@media screen and (max-width:$screen-lg-min){
+    .package-section{
+        .software-package{
+            width: 110%;
+        }
+    }
+}
+
+@media screen and (max-width:$screen-md-min){
+    .package-section{
+        width: 88%;
+        .software-package{
+            margin-top: 10px;
+            width: 107%;
+            overflow-y: scroll;
         }
     }
 }

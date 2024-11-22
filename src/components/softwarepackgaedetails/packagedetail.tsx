@@ -21,7 +21,9 @@ const PackageDetails: React.FC = () => {
 
     return (
         <div className="software-package-details">
-            <h3 className="right-title">Client Software Package Details</h3>
+            <div className="right-title">
+                <h3 >Client Software Package Details</h3>
+            </div>
             <div className="package-detail">
                 <div className="detail-item">
                     <span>Asset Owner</span><strong>Alan Lee</strong>
@@ -46,8 +48,9 @@ const PackageDetails: React.FC = () => {
                     <span>IdN No</span><strong>Missing</strong>
                 </div>
             </div>
-
-            <h4 className="owner-title">Client Software Package Owner Details</h4>
+            <div className='owner-title'>
+                <h4 >Client Software Package Owner Details</h4>
+            </div>
             <div className="owner-details">
                 <div className="detail-item">
                     <span>CMDB Owner</span><strong>Alan Lee</strong>

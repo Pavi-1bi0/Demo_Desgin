@@ -1,4 +1,5 @@
 @import '../scss/abstract/variables';
+@import '../scss/abstract/break_points';
 
 .software-package-details {
     margin: 20px 0;
@@ -8,11 +9,15 @@
     width: 100%;
 
     .right-title {
-        color: $accent-color;
-        position: absolute;
-        text-decoration: underline;
-        top: 8rem;
-        font-size: 13px;
+        position: relative;
+
+        h3 {
+            color: $accent-color;
+            position: absolute;
+            text-decoration: underline;
+            top: -5rem;
+            font-size: 13px;
+        }
     }
 
     .package-detail {
@@ -20,6 +25,7 @@
         text-align: justify;
         gap: 50px;
         margin-top: -38px;
+        // flex-wrap: wrap;
 
         .detail-item {
             display: flex;
@@ -35,11 +41,13 @@
                 display: flex;
                 font-size: 13px;
                 color: $secondary-color;
+                text-wrap: nowrap;
             }
 
             strong {
                 color: $text-color;
                 font-size: 10px;
+                // text-wrap: nowrap;
             }
 
             input {
@@ -51,11 +59,15 @@
     }
 
     .owner-title {
-        color: $accent-color;
-        position: absolute;
-        text-decoration: underline;
-        top: 13.5rem;
-        font-size: 13px;
+        position: relative;
+
+        h4 {
+            color: $accent-color;
+            position: absolute;
+            text-decoration: underline;
+            top: -17px;
+            font-size: 13px;
+        }
     }
 
     .owner-details {
@@ -78,6 +90,7 @@
                 display: flex;
                 font-size: 13px;
                 color: $secondary-color;
+                text-wrap: nowrap;
             }
 
             strong {
@@ -94,12 +107,19 @@
     }
 
     .title-sec {
+        position: relative;
+
         .user-title {
             color: $accent-color;
             position: absolute;
             text-decoration: underline;
-            top: 19rem;
-            font-size: 15px;
+            top: 0rem;
+            font-size: 11px;
+            padding-right: 20px;
+        }
+
+        span {
+            padding-left: 85px;
         }
 
         input {
@@ -191,6 +211,72 @@
             border: none;
             cursor: pointer;
             width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width:$screen-xl) {
+    .software-package-details {
+        .package-detail {
+            gap: 30px;
+        }
+    }
+}
+
+@media (max-width: $screen-xl-min) {
+    .software-package-details {
+        width: 45%;
+        // background-color: red;
+
+        .package-detail {
+            flex-wrap: wrap;
+            gap: 1px !important;
+        }
+
+        .owner-details {
+            gap: 20px;
+        }
+    }
+}
+@media screen and (max-width:$screen-lg-min) {
+    .software-package-details{
+        margin-top: 3rem;
+        width: 100%;
+        .right-title{
+            h3{
+                top: -5rem;
+            }
+        }
+        .package-detail{
+            gap: 20px !important;
+        }
+        .user-list-container{
+            width: auto;
+            margin-right: 1rem;
+        }
+        .footer{
+            margin-right: 1rem;
+        }
+    }
+}
+@media screen and (max-width:$screen-md-min){
+    .software-package-details{
+        .package-detail{
+            gap: 5px !important;
+            width: 93%;
+        }
+        .owner-details{
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .title-sec{
+            span{
+                padding-left: 173px;
+                font-size: 12px;
+            }
+        }
+        .user-list-container{
+            margin-right: 2rem;
         }
     }
 }
