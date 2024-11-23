@@ -8,11 +8,17 @@
     width: 100%;
 
     .left-title {
-        color: $accent-color;
-        text-decoration: underline;
-        position: absolute;
-        top: 121px;
-        font-size: 13px;
+        position: relative;
+
+        h3 {
+            color: hsl(48, 100%, 50%);
+            text-decoration: underline;
+            position: absolute;
+            top: -2rem;
+            font-size: 13px;
+            text-align: justify;
+            text-wrap: nowrap;
+        }
     }
 
     .software-package {
@@ -142,23 +148,26 @@
 @media screen and (max-width:$screen-xl-min) {
     .package-section {
         width: 90%;
+
         .software-package {
             max-height: 400px;
         }
     }
 }
-@media screen and (max-width:$screen-lg-min){
-    .package-section{
-        .software-package{
+
+@media screen and (max-width:$screen-lg-min) {
+    .package-section {
+        .software-package {
             width: 110%;
         }
     }
 }
 
-@media screen and (max-width:$screen-md-min){
-    .package-section{
+@media screen and (max-width:$screen-md-min) {
+    .package-section {
         width: 88%;
-        .software-package{
+
+        .software-package {
             margin-top: 10px;
             width: 107%;
             overflow-y: scroll;

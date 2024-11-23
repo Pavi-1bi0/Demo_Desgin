@@ -9,7 +9,9 @@ const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedCar
 
     return (
         <div className="package-section">
-            <h3 className="left-title">Client Software Package</h3>
+            <div className="left-title">
+                <h3 >Client Software Package</h3>
+            </div>
             <div className="software-package">
                 {packages.map((pkg, index) => (
                     <div
