@@ -1,12 +1,16 @@
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import SoftwareDashboard from './components/dashboard/dashboard'
+
+import { AppRouters } from './routers'
 
 function App() {
 
   return (
     <>
-      <SoftwareDashboard/>
-    </>
+    <RouterProvider router={AppRouters} />
+     
+
+   </>
   )
 }
 
