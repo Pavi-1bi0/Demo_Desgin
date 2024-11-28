@@ -97,93 +97,95 @@ const ContactForm: React.FC = () => {
     return (
         <div className="contact-form-container">
             <h1>Contact Us</h1>
-            <form className="contact-form" onSubmit={handleSave}>
-                <div className="form-group full-name">
-                    <label>Full name <span>*</span></label>
-                    <div className="name-fields">
-                        <input
-                            type="text"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            placeholder="First"
-                        />
-                        {errors.firstName && <span className="error">{errors.firstName}</span>}
-                        <input
-                            type="text"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            placeholder="Last"
-                        />
-                        {errors.lastName && <span className="error">{errors.lastName}</span>}
+            <div className="sub-container">
+                <form className="contact-form" onSubmit={handleSave}>
+                    <div className="form-group full-name">
+                        <label>Full name <span>*</span></label>
+                        <div className="name-fields">
+                            <input
+                                type="text"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                placeholder="First"
+                            />
+                            {errors.firstName && <span className="error">{errors.firstName}</span>}
+                            <input
+                                type="text"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                placeholder="Last"
+                            />
+                            {errors.lastName && <span className="error">{errors.lastName}</span>}
+                        </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <label>Gender <span>*</span></label>
-                    <select name="gender" value={formData.gender} onChange={handleChange}>
-                        <option value="" disabled>Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    {errors.gender && <span className="error">{errors.gender}</span>}
-                </div>
-                <div className="form-group">
-                    <label>Email <span>*</span></label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Enter your email"
-                    />
-                    {errors.email && <span className="error">{errors.email}</span>}
-                </div>
-                <div className="form-group">
-                    <label>Leave us a few words <span>*</span></label>
-                    <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={4}
-                        placeholder="Your message"
-                    ></textarea>
-                    {errors.message && <span className="error">{errors.message}</span>}
-                </div>
-                <div className="button-group">
-                    <button type="submit" className="save-button">Save</button>
-                    <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
-                </div>
-            </form>
+                    <div className="form-group">
+                        <label>Gender <span>*</span></label>
+                        <select name="gender" value={formData.gender} onChange={handleChange}>
+                            <option value="" disabled>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        {errors.gender && <span className="error">{errors.gender}</span>}
+                    </div>
+                    <div className="form-group">
+                        <label>Email <span>*</span></label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                        />
+                        {errors.email && <span className="error">{errors.email}</span>}
+                    </div>
+                    <div className="form-group">
+                        <label>Leave us a few words <span>*</span></label>
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            rows={4}
+                            placeholder="Your message"
+                        ></textarea>
+                        {errors.message && <span className="error">{errors.message}</span>}
+                    </div>
+                    <div className="button-group">
+                        <button type="submit" className="save-button">Save</button>
+                        <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
+                    </div>
+                </form>
 
-            {submittedData.length > 0 && (
-                <div className="submitted-data">
-                    <h2>Submitted Data</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Gender</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {submittedData.map((data, index) => (
-                                <tr key={index}>
-                                    <td>{data.firstName}</td>
-                                    <td>{data.lastName}</td>
-                                    <td>{data.gender}</td>
-                                    <td>{data.email}</td>
-                                    <td>{data.message}</td>
+                {submittedData.length > 0 && (
+                    <div className="submitted-data">
+                        <h2>Submitted Data</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+                            </thead>
+                            <tbody>
+                                {submittedData.map((data, index) => (
+                                    <tr key={index}>
+                                        <td>{data.firstName}</td>
+                                        <td>{data.lastName}</td>
+                                        <td>{data.gender}</td>
+                                        <td>{data.email}</td>
+                                        <td>{data.message}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
