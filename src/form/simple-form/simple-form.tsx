@@ -157,34 +157,31 @@ const ContactForm: React.FC = () => {
                         <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                     </div>
                 </form>
-
-                {submittedData.length > 0 && (
-                    <div className="submitted-data">
-                        <h2>Submitted Data</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Gender</th>
-                                    <th>Email</th>
-                                    <th>Message</th>
+                <div className="submitted-data">
+                    <h2>Submitted Data</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {submittedData.map((data, index) => (
+                                <tr key={index}>
+                                    <td>{data.firstName}</td>
+                                    <td>{data.lastName}</td>
+                                    <td>{data.gender}</td>
+                                    <td>{data.email}</td>
+                                    <td>{data.message}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {submittedData.map((data, index) => (
-                                    <tr key={index}>
-                                        <td>{data.firstName}</td>
-                                        <td>{data.lastName}</td>
-                                        <td>{data.gender}</td>
-                                        <td>{data.email}</td>
-                                        <td>{data.message}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
