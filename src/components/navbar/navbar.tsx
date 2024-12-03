@@ -7,6 +7,8 @@ import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger icon
 import { IconButton } from "@mui/material";
 import Sidebar from "../sidebar/sidebar";
+import img from '../../assets/dashboard/img.jpg';
+
 
 interface navbarProps {
   toggleSidebar: () => void;
@@ -26,7 +28,8 @@ const Navbar: React.FC<navbarProps> = ({ toggleSidebar }) => {
       <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
       {/* Greeting */}
-      <div className="navbar__greeting">Software Development Tool</div>
+      <div className="navbar__greeting">
+        <h4>Software Development Tool</h4></div>
 
       {/* Icons Section */}
       <div className="navbar__icons">
@@ -46,7 +49,7 @@ const Navbar: React.FC<navbarProps> = ({ toggleSidebar }) => {
         {/* Avatar */}
         <div className="navbar__avatar">
           <img
-            // src={img} // Replace with your avatar image URL
+            src={img} // Replace with your avatar image URL
             alt="User Avatar"
             className="navbar__avatar-img"
           />

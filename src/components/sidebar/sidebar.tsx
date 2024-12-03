@@ -83,12 +83,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
           </i>
           <span>Settings</span>
         </div>
-        <div className="sidebar__item">
+        {/* <div className="sidebar__item">
           <i className="sidebar__icon">
             <ManageAccountsOutlinedIcon />
           </i>
           <span>Support</span>
-        </div>
+        </div> */}
         <div className="sidebar__item sidebar__item--logout">
           <i className="sidebar__icon">
             <LoginOutlinedIcon />

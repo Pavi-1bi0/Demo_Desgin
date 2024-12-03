@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/softwarepackagedetail/packagedetails.scss';
 import User from '../../@types/interface/packagedetails/packagedetails';
+import { Checkbox } from '@mui/material';
 
 
 const PackageDetails: React.FC = () => {
@@ -74,15 +75,16 @@ const PackageDetails: React.FC = () => {
 
             <div className="title-sec">
                 <h4 className="user-title">Client Software Package User List</h4>
-                <span className="checkbox-wrapper">
-                    Disabled user:
-                    <input
+                <div className="checkbox-wrapper">
+                   <div className='user'> Disabled user:</div>
+                    {/* <input
                         type="checkbox"
                         checked={checked}
                         onChange={handleCheckboxChange}
                         className="custom-checkbox"
-                    />
-                </span>
+                    /> */}
+                   <Checkbox  defaultChecked className='checkbox' />
+                </div>
 
                 {/* <button className="add-user" onClick={addUser}>Add User</button> */}
             </div>
@@ -104,12 +106,13 @@ const PackageDetails: React.FC = () => {
                                             Remove user from Software Package?
                                             <p>
                                                 Action Required Software:
-                                                <input
+                                                {/* <input
                                                     type="checkbox"
                                                     checked={checked}
                                                     onChange={handleCheckboxChange}
                                                     className="custom-checkbox"
-                                                />
+                                                /> */}
+                                                <Checkbox  defaultChecked  />
                                             </p>
                                         </label>
                                     </div>

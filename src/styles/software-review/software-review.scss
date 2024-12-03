@@ -1,4 +1,4 @@
-@import '../../styles/scss/abstract/variables';
+@import '../scss/abstract/variables';
 @import '../scss/abstract/break_points';
 
 .software-review-center {
@@ -31,13 +31,13 @@
                 height: 3rem;
             }
             p {
-                font-size: 18px;
+                font-size: 14px;
                 color: black;
                 font-weight: 700;
                 margin-top: -1px;
                 strong{
                     font-weight: 500;
-                    color: $accent-color;
+                    color: $default-colr;
                 }
                 input{
                     width: 20px;
@@ -62,6 +62,7 @@
     .package-section {
       
        display: flex;
+       margin-top: -10px;
     }
     .ticket-section{
         display: flex;

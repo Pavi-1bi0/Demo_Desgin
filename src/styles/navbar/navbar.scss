@@ -7,67 +7,80 @@
   align-items: center;
   padding: 0 20px;
   background-color: #fff;
-  height: 60px;
+  height: 50px;
   border-bottom: 1px solid #eee;
   // box-shadow: $default-shadow;
   position: fixed;
   z-index: 1000;
-  width: calc(100% - 231px); /* Automatically adjusts the width */
+  width: calc(100% - 231px);
+  /* Automatically adjusts the width */
   margin-left: 231px;
   margin-top: -7px;
- 
-  
+
+
   // &.navbar--minimized {
   //   width: calc(100% - 250px);
   // }
 
-  .toggle-icon{
-    display:none;
-  }
-
-
-  .sidebar--closed{
+  .toggle-icon {
     display: none;
   }
+
+
+  .sidebar--closed {
+    display: none;
+  }
+
   /* Full width when sidebar is closed */
   &.navbar--expanded {
     width: 100%;
   }
 
   &__greeting {
-    font-size: 25px;
-    font-weight: 600;
-    color: $btn-color;
-    margin-left: 51rem;
+    position: relative;
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ea650d;
+      text-wrap: wrap;
+      position: absolute;
+      // width: 17%;
+      margin-left: -15rem;
+      margin-top: -1rem;
+    }
   }
 
-  .navbar__hamburger{
+  .navbar__hamburger {
     display: none;
   }
 
   .navbar__icons {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Icons stay on the right */
+    justify-content: flex-end;
+    /* Icons stay on the right */
     gap: 15px;
-    margin-right: 35px; /* No negative margin */
+    margin-right: 35px;
+    /* No negative margin */
     cursor: pointer;
 
     .fa-search,
     .fa-bell {
       color: gray;
-      font-size: 20px; /* Adjust icon size if needed */
+      font-size: 20px;
+      /* Adjust icon size if needed */
     }
 
     .divider {
-      height: 25px;
+      height: 20px;
       border: 2px solid gray;
+      margin-top: 5px;
     }
 
     .navbar__avatar {
       position: relative;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       overflow: hidden;
       cursor: pointer;

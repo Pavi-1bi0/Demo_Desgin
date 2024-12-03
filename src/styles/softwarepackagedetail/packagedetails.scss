@@ -14,16 +14,17 @@
         h3 {
             color: black;
             position: absolute;
-            text-decoration: underline;
+            /* text-decoration: underline; */
             top: -5rem;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 17px;
         }
     }
 
     .package-detail {
         display: flex;
         text-align: justify;
-        gap: 50px;
+        gap: 20px;
         margin-top: -38px;
         margin-right: 1rem;
         // flex-wrap: wrap;
@@ -50,6 +51,7 @@
             strong {
                 color: $default-colr;
                 font-size: 10px;
+                font-weight: 500;
                 // text-wrap: nowrap;
             }
 
@@ -68,16 +70,16 @@
         h4 {
             color: $default-colr;
             position: absolute;
-            text-decoration: underline;
+            // text-decoration: underline;
             top: -17px;
-            font-size: 13px;
+            font-size: 16px;
         }
     }
 
     .owner-details {
         display: flex;
         text-align: justify;
-        gap: 50px;
+        gap: 25px;
         margin-top: 1.5rem;
 
         .detail-item {
@@ -95,11 +97,13 @@
                 font-size: 13px;
                 color: $default-colr;
                 text-wrap: nowrap;
+                font-weight: 700;
             }
 
             strong {
                 color: $default-colr;
                 font-size: 10px;
+                font-weight: 500;
             }
 
             input {
@@ -115,30 +119,30 @@
         position: relative;
 
         .user-title {
-            color: $default-colr;
+            color: #31322a;
             position: absolute;
-            text-decoration: underline;
-            top: -7px;
-            font-size: 11px;
+            /* text-decoration: underline; */
+            top: -17px;
+            font-size: 16px;
             padding-right: 20px;
+            // margin-top: -10px;
         }
 
-        span {
-            padding-left: 85px;
-            color: $default-colr;
+        .checkbox-wrapper {
+            margin-left: 18rem;
+            display: flex;
+            .user{
+                // padding-left: 85px;
+                color: $default-colr;
+                margin-top: 7px;
+            }
+
+            // .checkbox {
+            //     background-color: blue;
+            // }
+
         }
 
-        .custom-checkbox {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-            accent-color: blue; /* Changes the checkmark color to blue */
-          }
-          
-          .custom-checkbox:checked {
-            border-color: blue;
-          }
-          
     }
 
     .user-list-container {
@@ -148,6 +152,7 @@
         padding: 8px;
         height: 7rem;
         margin-right: 1rem;
+        margin-top: -10px;
 
         .user-list {
             .user-row {
@@ -163,7 +168,7 @@
                     width: 30px;
                     text-align: center;
                     font-weight: bold;
-                    color: $text-color;
+                    color: $default-colr;
                 }
 
                 .user-details {
@@ -206,13 +211,14 @@
                                 width: 16px;
                                 height: 16px;
                                 cursor: pointer;
-                                accent-color: blue; /* Changes the checkmark color to blue */
-                              }
-                              
-                              .custom-checkbox:checked {
+                                accent-color: blue;
+                                /* Changes the checkmark color to blue */
+                            }
+
+                            .custom-checkbox:checked {
                                 border-color: blue;
-                              }
-                              
+                            }
+
                         }
                     }
                 }
@@ -225,7 +231,7 @@
         margin-top: 7px;
 
         .review-complete {
-            background-color: $highlight-color;
+            background-color: $btn-color;
             color: $secondary-color;
             padding: 8px 16px;
             border-radius: 12px;
@@ -259,44 +265,53 @@
         }
     }
 }
+
 @media screen and (max-width:$screen-lg-min) {
-    .software-package-details{
+    .software-package-details {
         margin-top: 3rem;
         width: 100%;
-        .right-title{
-            h3{
+
+        .right-title {
+            h3 {
                 top: -5rem;
             }
         }
-        .package-detail{
+
+        .package-detail {
             gap: 20px !important;
         }
-        .user-list-container{
+
+        .user-list-container {
             width: auto;
             margin-right: 1rem;
         }
-        .footer{
+
+        .footer {
             margin-right: 1rem;
         }
     }
 }
-@media screen and (max-width:$screen-md-min){
-    .software-package-details{
-        .package-detail{
+
+@media screen and (max-width:$screen-md-min) {
+    .software-package-details {
+        .package-detail {
             gap: 5px !important;
             width: 93%;
         }
-        .owner-details{
+
+        .owner-details {
             gap: 5px;
             flex-wrap: wrap;
         }
-        .title-sec{
-            span{
+
+        .title-sec {
+            span {
                 padding-left: 173px;
                 font-size: 12px;
             }
         }
-        .user-list-container{
+
+        .user-list-container {
             margin-right: 2rem;
         }
     }

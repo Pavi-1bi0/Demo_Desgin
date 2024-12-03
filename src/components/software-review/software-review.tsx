@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../../styles/software-review/software-review.scss';
-import img from '../../assets/dashboard/img.jpg';
 import SoftwarePackage from '../softwarepackage/softwarepackage';
 import PackageDetails from '../softwarepackgaedetails/packagedetail';
 import TicketHistory from '../tickethistory/tickethistory';
 import Tickectdetails from '../ticketdetails/tickectdetails';
 import Navbar from '../navbar/navbar';
 import Sidebar from '../sidebar/sidebar';
+import { Checkbox } from '@mui/material';
+import babel from '@babel/core';
 
 
 
@@ -39,17 +40,18 @@ const SoftwareDashboard: React.FC = () => {
                 <header className="header">
                     <h1>Client Software Package Review Center</h1>
                     <div className='sub-header'>
-                        <img src={img} alt="" />
+                        {/* <img src={img} alt="" /> */}
                         <p>Owner: <strong>Alan Lee</strong></p>
                         <p># of Software: <strong>4</strong></p>
                         <p>
                             Action Required Software:
-                            <input
+                            {/* <input
                                 type="checkbox"
                                 checked={checked}
                                 onChange={handleCheckboxChange}
                                 className="custom-checkbox"
-                            />
+                            /> */}
+                            <Checkbox  defaultChecked />
                         </p>
                     </div>
                 </header>

@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin-top: 10px;
     .header {
         display: flex;
         justify-content: space-between;
@@ -13,14 +14,15 @@
         position: relative;
 
         h2 {
-            font-size: 13px;
+            font-size: 17px;
             color: $default-colr;
             margin: 0;
-            text-decoration: underline;
+            // text-decoration: underline;
             margin-top: 40px;
             text-wrap: nowrap;
             position: absolute;
             margin-top: -12rem;
+            font-weight: 700;
         }
 
         .ticket-count {
@@ -68,7 +70,8 @@
             tbody {
                 tr {
                     &:hover {
-                        background-color: #333;
+                        background-color:lightgrey;
+                        border-radius: 10px;
                     }
 
                     td {
