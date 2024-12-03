@@ -12,7 +12,7 @@
         position: relative;
 
         h3 {
-            color: $accent-color;
+            color: black;
             position: absolute;
             text-decoration: underline;
             top: -5rem;
@@ -25,6 +25,7 @@
         text-align: justify;
         gap: 50px;
         margin-top: -38px;
+        margin-right: 1rem;
         // flex-wrap: wrap;
 
         .detail-item {
@@ -35,17 +36,19 @@
             .ad,
             .ad-str {
                 margin-left: -4rem;
+                text-wrap: nowrap;
             }
 
             span {
                 display: flex;
                 font-size: 13px;
-                color: $secondary-color;
+                color: $default-colr;
                 text-wrap: nowrap;
+                font-weight: 700;
             }
 
             strong {
-                color: $text-color;
+                color: $default-colr;
                 font-size: 10px;
                 // text-wrap: nowrap;
             }
@@ -53,7 +56,8 @@
             input {
                 width: 8rem;
                 height: 20px;
-                border: 1px solid $highlight-color;
+                border: 1px solid black;
+                background-color: white;
             }
         }
     }
@@ -62,7 +66,7 @@
         position: relative;
 
         h4 {
-            color: $accent-color;
+            color: $default-colr;
             position: absolute;
             text-decoration: underline;
             top: -17px;
@@ -89,19 +93,20 @@
             span {
                 display: flex;
                 font-size: 13px;
-                color: $secondary-color;
+                color: $default-colr;
                 text-wrap: nowrap;
             }
 
             strong {
-                color: $text-color;
+                color: $default-colr;
                 font-size: 10px;
             }
 
             input {
                 width: 8rem;
                 height: 20px;
-                border: 1px solid $highlight-color;
+                border: 1px solid black;
+                background-color: white;
             }
         }
     }
@@ -110,32 +115,39 @@
         position: relative;
 
         .user-title {
-            color: $accent-color;
+            color: $default-colr;
             position: absolute;
             text-decoration: underline;
-            top: 0rem;
+            top: -7px;
             font-size: 11px;
             padding-right: 20px;
         }
 
         span {
             padding-left: 85px;
+            color: $default-colr;
         }
 
-        input {
-            width: 20px;
-            height: 15px;
-            margin-top: 15px;
-            border: 1px solid $accent-color;
-        }
+        .custom-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: blue; /* Changes the checkmark color to blue */
+          }
+          
+          .custom-checkbox:checked {
+            border-color: blue;
+          }
+          
     }
 
     .user-list-container {
         max-height: 150px;
         overflow-y: auto;
-        border: 1px solid $accent-color;
+        border: 1px solid $default-colr;
         padding: 8px;
         height: 7rem;
+        margin-right: 1rem;
 
         .user-list {
             .user-row {
@@ -166,6 +178,7 @@
 
                         p {
                             margin: 4px 0;
+                            color: $default-colr;
                         }
 
                         a {
@@ -180,7 +193,7 @@
 
                     .user-mail {
                         a {
-                            color: $secondary-color;
+                            // color: $secondary-color;
                         }
                     }
 
@@ -189,9 +202,17 @@
                             color: $highlight-color;
                             font-size: 0.85rem;
 
-                            input {
-                                margin-left: 4px;
-                            }
+                            .custom-checkbox {
+                                width: 16px;
+                                height: 16px;
+                                cursor: pointer;
+                                accent-color: blue; /* Changes the checkmark color to blue */
+                              }
+                              
+                              .custom-checkbox:checked {
+                                border-color: blue;
+                              }
+                              
                         }
                     }
                 }

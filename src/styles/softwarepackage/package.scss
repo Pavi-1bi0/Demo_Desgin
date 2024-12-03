@@ -1,176 +1,166 @@
-@import '../scss/abstract/variables';
-@import '../scss/abstract/break_points';
+@import '../../styles/scss/abstract/variables';
+@import '../../styles/scss/abstract/break_points';
 
 .package-section {
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     width: 100%;
-
+  
     .left-title {
-        position: relative;
-
-        h3 {
-            color: hsl(48, 100%, 50%);
-            text-decoration: underline;
-            position: absolute;
-            top: -2rem;
-            font-size: 13px;
-            text-align: justify;
-            text-wrap: nowrap;
-        }
+      position: relative;
+  
+      h3 {
+        // color: hsl(48, 100%, 50%);
+        text-decoration: underline;
+        position: absolute;
+        top: -2rem;
+        font-size: 13px;
+        text-align: justify;
+        text-wrap: nowrap;
+      }
     }
-
+  
     .software-package {
+      border-radius: 5px;
+      color: $secondary-color;
+      border: 2px solid black;
+      width: 100%;
+      max-height: 360px;
+      overflow-y: auto;
+  
+      .package-item {
+        padding: 10px;
+        border-bottom: 2px solid $secondary-color;
         border-radius: 5px;
-        color: $secondary-color;
-        border: 2px solid $accent-color;
-        width: 100%;
-        max-height: 360px;
-        /* Set a fixed height for the scrollable area */
-        overflow-y: auto;
-        /* Enable vertical scrolling */
-
-        .package-item {
-            padding: 10px;
-            border-bottom: 2px solid $secondary-color;
-            border-radius: 5px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            text-align: justify;
-            gap: 30px;
-            background-color: #333;
-            /* Default background for unselected items */
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-
-            // &:hover {
-            //     background-color: ; /* Slight highlight on hover */
-            // }
-
-            &.selected {
-                background-color: blueviolet;
-                /* Selected item background */
-                color: $secondary-color;
-                /* Ensure text is readable on violet */
-                border: 2px solid #1976d2;
-                /* Highlight border for selected */
-                transform: translateY(-2px);
-                /* Slight pop-up effect */
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            }
-
-            .package-number {
-                color: $accent-color;
-                font-size: 15px;
-                font-weight: 500;
-            }
-
-            .package-details {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-
-                .package-name {
-                    font-weight: bold;
-                    color: $text-color;
-                    margin-bottom: 5px;
-                }
-
-                .details-row {
-                    display: flex;
-                    justify-content: space-between;
-                    /* Align elements side by side */
-                    align-items: center;
-                    /* Vertically center the items */
-                    gap: 20px;
-                    /* Space between the items */
-
-                    .review-date {
-                        font-size: 13px;
-                        color: $secondary-color;
-                        white-space: nowrap;
-                    }
-
-                    .package-description {
-                        font-size: 15px;
-                        color: $secondary-color;
-                    }
-                }
-            }
-
-            button {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: $accent-color;
-                color: black;
-                border: none;
-                border-radius: 15px;
-                cursor: pointer;
-                height: 35px;
-                padding: 0 15px;
-
-                .go-to-cmdb {
-                    color: $default-colr;
-                    text-decoration: none;
-                    font-size: 10px;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        .package-item:last-child {
-            border-bottom: none;
-            /* Remove border from the last item */
-        }
-    }
-
-    .add-package-btn {
-        background-color: $accent-color;
-        color: $default-colr;
-        border: none;
-        border-radius: 15px;
-        padding: 10px 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        text-align: justify;
+        gap: 30px;
+        background-color: white;
         cursor: pointer;
+        transition: all 0.3s ease-in-out;
+  
+        &.selected {
+          background-color: $accent-color;
+          color: $secondary-color;
+          border: 2px solid #1976d2;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  
+          button {
+            background-color:$highlight-color; /* Light red when selected */
+          }
+        }
+  
+        .package-number {
+          color: $default-colr;
+          font-size: 15px;
+          font-weight: 500;
+        }
+  
+        .package-details {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+  
+          .package-name {
+            font-weight: bold;
+            color: $default-colr;
+            margin-bottom: 5px;
+          }
+  
+          .details-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+  
+            .review-date {
+              font-size: 13px;
+        
+              white-space: nowrap;
+            }
+  
+            .package-description {
+              font-size: 15px;
+            
+            }
+          }
+        }
+  
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $accent-color;
+          color: black;
+          border: none;
+          border-radius: 15px;
+          cursor: pointer;
+          height: 35px;
+          padding: 0 15px;
+  
+          .go-to-cmdb {
+            color: $default-colr;
+            text-decoration: none;
+            font-size: 10px;
+          }
+  
+          &:hover {
+            background-color: #1976d2;
+          }
+        }
+      }
+  
+      .package-item:last-child {
+        border-bottom: none;
+      }
+    }
+  
+    .add-package-btn {
+      background-color: $accent-color;
+      color: $default-colr;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+  
+      &:hover {
+        background-color: #f1c40f;
+      }
+    }
+  }
+  
+  @media screen and (max-width: $screen-xl-min) {
+    .package-section {
+      width: 90%;
+  
+      .software-package {
+        max-height: 400px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: $screen-lg-min) {
+    .package-section {
+      .software-package {
+        width: 110%;
+      }
+    }
+  }
+  
+  @media screen and (max-width: $screen-md-min) {
+    .package-section {
+      width: 88%;
+  
+      .software-package {
         margin-top: 10px;
-
-        &:hover {
-            background-color: #f1c40f;
-        }
+        width: 107%;
+        overflow-y: scroll;
+      }
     }
-}
-
-@media screen and (max-width:$screen-xl-min) {
-    .package-section {
-        width: 90%;
-
-        .software-package {
-            max-height: 400px;
-        }
-    }
-}
-
-@media screen and (max-width:$screen-lg-min) {
-    .package-section {
-        .software-package {
-            width: 110%;
-        }
-    }
-}
-
-@media screen and (max-width:$screen-md-min) {
-    .package-section {
-        width: 88%;
-
-        .software-package {
-            margin-top: 10px;
-            width: 107%;
-            overflow-y: scroll;
-        }
-    }
-}
+  }
+  

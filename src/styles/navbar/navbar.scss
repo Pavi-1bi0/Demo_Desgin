@@ -1,0 +1,111 @@
+@import '../scss/abstract/variables';
+// @import '../../scss/abstract/break-points';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff;
+  height: 60px;
+  border-bottom: 1px solid #eee;
+  // box-shadow: $default-shadow;
+  position: fixed;
+  z-index: 1000;
+  width: calc(100% - 231px); /* Automatically adjusts the width */
+  margin-left: 231px;
+  margin-top: -7px;
+ 
+  
+  // &.navbar--minimized {
+  //   width: calc(100% - 250px);
+  // }
+
+  .toggle-icon{
+    display:none;
+  }
+
+
+  .sidebar--closed{
+    display: none;
+  }
+  /* Full width when sidebar is closed */
+  &.navbar--expanded {
+    width: 100%;
+  }
+
+  &__greeting {
+    font-size: 25px;
+    font-weight: 600;
+    color: $btn-color;
+    margin-left: 51rem;
+  }
+
+  .navbar__hamburger{
+    display: none;
+  }
+
+  .navbar__icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Icons stay on the right */
+    gap: 15px;
+    margin-right: 35px; /* No negative margin */
+    cursor: pointer;
+
+    .fa-search,
+    .fa-bell {
+      color: gray;
+      font-size: 20px; /* Adjust icon size if needed */
+    }
+
+    .divider {
+      height: 25px;
+      border: 2px solid gray;
+    }
+
+    .navbar__avatar {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+
+      .navbar__avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+}
+
+// @media screen and (max-width:$screen-lg-min){
+//   .navbar{
+//     width: 100%;
+//     margin-left: -7px;
+
+//     .navbar__hamburger{
+//       display: block;
+//     }
+//     .toggle-icon{
+//       display: block;
+//     }
+
+//     .sidebar--open{
+//       transform: translateX(0);
+//       // position: fixed;
+//       // margin-top: 467px;
+//       margin-left: -20px;    
+//         // transform: translateX(0);
+//         margin-top: 466px;
+//     }
+//     .sidebar--closed{
+//       // margin-left: -20px;    
+//       // // transform: translateX(0);
+//       // margin-top: 466px;
+//     }
+//   }
+// }

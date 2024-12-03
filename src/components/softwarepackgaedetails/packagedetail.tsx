@@ -18,7 +18,11 @@ const PackageDetails: React.FC = () => {
         };
         setUsers([...users, newUser]);
     };
+    const [checked, setChecked] = useState(true); // Default ticked state
 
+    const handleCheckboxChange = () => {
+        setChecked(!checked);
+    };
     return (
         <div className="software-package-details">
             <div className="right-title">
@@ -70,7 +74,16 @@ const PackageDetails: React.FC = () => {
 
             <div className="title-sec">
                 <h4 className="user-title">Client Software Package User List</h4>
-                <span>Disabled user: <input type="checkbox" /></span>
+                <span className="checkbox-wrapper">
+                    Disabled user:
+                    <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={handleCheckboxChange}
+                        className="custom-checkbox"
+                    />
+                </span>
+
                 {/* <button className="add-user" onClick={addUser}>Add User</button> */}
             </div>
 
@@ -89,7 +102,15 @@ const PackageDetails: React.FC = () => {
                                     <div className="remove-option">
                                         <label>
                                             Remove user from Software Package?
-                                            <input type="checkbox" />
+                                            <p>
+                                                Action Required Software:
+                                                <input
+                                                    type="checkbox"
+                                                    checked={checked}
+                                                    onChange={handleCheckboxChange}
+                                                    className="custom-checkbox"
+                                                />
+                                            </p>
                                         </label>
                                     </div>
                                 </div>

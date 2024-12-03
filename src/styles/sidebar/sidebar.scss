@@ -1,0 +1,123 @@
+@import '../scss/abstract/variables';
+
+.sidebar {
+  width: 200px;
+  // background-color:$default-colr;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  border-right: 1px solid #eee;
+  padding: 20px 15px;
+  position: fixed; /* Fix sidebar to the left side */
+  transition: transform 0.3s ease; /* Smooth transition for sidebar toggle */
+  transform: translateX(0); /* Sidebar visible */
+  // margin-top:-54px;
+  
+
+  
+  
+  // &--open {
+  //   transform: translateX(0); /* Sidebar visible */
+  //   display:none;
+  // }
+
+  // &--closed {
+  //   transform: translateX(-100%); /* Sidebar hidden */
+  // }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    flex-direction: column;
+    gap: 10px;
+    
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    &-icon {
+      font-size: 30px;
+      color: #e91e63;
+      font-weight: bold;
+    }
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+  }
+
+  &__menu {
+    flex: 1; /* Allow menu to grow within available space */
+    padding-right: 5px; /* Avoid scrollbar overlapping content */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between items */
+    max-height: calc(100vh - 160px); /* Subtract height for logo and footer */
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0; /* Optional: Add some padding for spacing */
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    font-size: 17px;
+    transition: all 0.3s;
+    text-decoration: none;
+
+    &:hover,
+    &--active {
+      background-color: $btn-color;
+      color: white;
+      border-radius: 30px;
+    }
+
+    &--logout {
+      color: #e91e63;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #ffe8ed;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 18px;
+  }
+
+//   /* Media Query for mobile screens */
+//   @media (max-width:$screen-lg-min) {
+//     &__menu {
+//       max-height: none; /* Allow full menu height on mobile */
+//     }
+
+//     &--open {
+//       transform: translateX(0); /* Sidebar visible */
+//       // z-index: 1000;
+//     }
+
+//     &--closed {
+//       transform: translateX(-100%); /* Sidebar hidden */
+//       margin-top:400px ;
+//     }
+
+   
+//   }
+}
+
