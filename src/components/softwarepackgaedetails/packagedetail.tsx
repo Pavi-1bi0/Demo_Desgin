@@ -1,29 +1,41 @@
 import React, { useState } from 'react';
 import '../../styles/softwarepackagedetail/packagedetails.scss';
 import User from '../../@types/interface/packagedetails/packagedetails';
-import { Checkbox } from '@mui/material';
+import { Checkbox, useMediaQuery, useTheme } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 
 
 const PackageDetails: React.FC = () => {
     const [users, setUsers] = useState<User[]>([
         { id: 1, name: 'Nagayoshi, (Takayuki)', status: 'Active', department: 'Technology Foundation (Div X)', email: 'alan.lee@nnlife.co.jp' },
     ]);
+    const [open, setOpen] = useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    const addUser = () => {
-        const newUser: User = {
-            id: users.length + 1,
-            name: `User ${users.length + 1}`,
-            status: 'Inactive',
-            department: 'Department X',
-            email: `user${users.length + 1}@example.com`,
-        };
-        setUsers([...users, newUser]);
-    };
-    const [checked, setChecked] = useState(true); // Default ticked state
 
-    const handleCheckboxChange = () => {
-        setChecked(!checked);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleSubmitReview = () => {
+        setOpen(false);
+        alert('Review submitted successfully!');
+        // Add further logic here (e.g., API call or navigation)
     };
+    
+    // const addUser = () => {
+    //     const newUser: User = {
+    //         id: users.length + 1,
+    //         name: `User ${users.length + 1}`,
+    //         status: 'Inactive',
+    //         department: 'Department X',
+    //         email: `user${users.length + 1}@example.com`,
+    //     };
+    //     setUsers([...users, newUser]);
+    // };
+
+
+
     return (
         <div className="software-package-details">
             <div className="right-title">
@@ -76,14 +88,14 @@ const PackageDetails: React.FC = () => {
             <div className="title-sec">
                 <h4 className="user-title">Client Software Package User List</h4>
                 <div className="checkbox-wrapper">
-                   <div className='user'> Disabled user:</div>
+                    <div className='user'> Disabled user:</div>
                     {/* <input
                         type="checkbox"
                         checked={checked}
                         onChange={handleCheckboxChange}
                         className="custom-checkbox"
                     /> */}
-                   <Checkbox  defaultChecked className='checkbox' />
+                    <Checkbox defaultChecked className='checkbox' />
                 </div>
 
                 {/* <button className="add-user" onClick={addUser}>Add User</button> */}
@@ -112,7 +124,7 @@ const PackageDetails: React.FC = () => {
                                                     onChange={handleCheckboxChange}
                                                     className="custom-checkbox"
                                                 /> */}
-                                                <Checkbox  defaultChecked  />
+                                                <Checkbox defaultChecked />
                                             </p>
                                         </label>
                                     </div>
@@ -126,7 +138,36 @@ const PackageDetails: React.FC = () => {
             </div>
 
             <div className="footer">
-                <button className="review-complete">Review Complete</button>
+
+
+
+                <button className="review-complete" onClick={handleOpen}>
+                    Review Complete
+                </button>
+                <Dialog
+                    fullScreen={fullScreen}
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="responsive-dialog-title"
+                >
+                    <DialogTitle id="responsive-dialog-title">
+                        {"Submit Review?"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Are you sure you want to submit your review?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button autoFocus onClick={handleClose} className='cancel-btn'>
+                            cancel
+                        </Button>
+                        <Button onClick={handleClose} autoFocus className='submit-btn'>
+                            submit
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
             </div>
         </div>
     );

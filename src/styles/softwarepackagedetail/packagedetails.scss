@@ -32,7 +32,7 @@
         .detail-item {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 10px;
 
             .ad,
             .ad-str {
@@ -60,6 +60,7 @@
                 height: 20px;
                 border: 1px solid black;
                 background-color: white;
+                color: black;
             }
         }
     }
@@ -71,8 +72,8 @@
             color: $default-colr;
             position: absolute;
             // text-decoration: underline;
-            top: -17px;
-            font-size: 16px;
+            top: -10px;
+            font-size: 13px;
         }
     }
 
@@ -80,12 +81,12 @@
         display: flex;
         text-align: justify;
         gap: 25px;
-        margin-top: 1.5rem;
+        margin-top: 35px;
 
         .detail-item {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 10px;
 
             .ad,
             .ad-str {
@@ -94,7 +95,7 @@
 
             span {
                 display: flex;
-                font-size: 13px;
+                font-size: 10px;
                 color: $default-colr;
                 text-wrap: nowrap;
                 font-weight: 700;
@@ -111,6 +112,7 @@
                 height: 20px;
                 border: 1px solid black;
                 background-color: white;
+                color: black;
             }
         }
     }
@@ -124,7 +126,7 @@
             /* text-decoration: underline; */
             top: -17px;
             font-size: 16px;
-            padding-right: 20px;
+            // padding-right: 20px;
             // margin-top: -10px;
         }
 
@@ -146,14 +148,43 @@
     }
 
     .user-list-container {
-        max-height: 150px;
+        max-height: 100px;
         overflow-y: auto;
-        border: 1px solid $default-colr;
-        padding: 8px;
-        height: 7rem;
+        border: 1px solid #31322a;
+        /* padding: 8px; */
+        height: 6rem;
         margin-right: 1rem;
-        margin-top: -10px;
+        // margin-top: 27px;
 
+        &::-webkit-scrollbar {
+            height: 4px;
+            /* Slimmer horizontal scrollbar */
+            width: 4px;
+            /* Slimmer vertical scrollbar */
+          }
+      
+          &::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            /* Light gray track for a clean appearance */
+          }
+      
+          &::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            /* Gray thumb for a neutral, linear look */
+            border-radius: 0;
+            /* No rounded corners for a linear design */
+          }
+      
+          &::-webkit-scrollbar-thumb:hover {
+            background: #909090;
+            /* Slightly darker gray on hover */
+          }
+      
+          /* Firefox styles */
+          scrollbar-width: thin;
+          /* Thinner scrollbar */
+          scrollbar-color: #b0b0b0 #e0e0e0;
+          /* Thumb and track colors */
         .user-list {
             .user-row {
                 display: flex;
@@ -238,6 +269,9 @@
             border: none;
             cursor: pointer;
             width: 100%;
+        }
+        .cancel-btn{
+            border: 1px solid $btn-color;
         }
     }
 }

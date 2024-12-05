@@ -60,7 +60,7 @@
     /* Thumb and track colors */
 
     .package-item {
-      padding: 10px;
+      padding: 6px;
       border-bottom: 2px solid $secondary-color;
       border-radius: 5px;
       display: flex;
@@ -89,6 +89,7 @@
         color: $default-colr;
         font-size: 15px;
         font-weight: 500;
+        margin-left: 5px;
       }
 
       .package-details {
@@ -115,7 +116,7 @@
           }
 
           .package-description {
-            font-size: 15px;
+            font-size: 12px;
             color: $default-colr;
 
           }
@@ -133,6 +134,7 @@
         cursor: pointer;
         height: 35px;
         padding: 0 15px;
+        margin-top: 21px;
 
         .go-to-cmdb {
           color: $default-colr;

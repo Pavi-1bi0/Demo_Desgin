@@ -39,14 +39,16 @@
   &__greeting {
     position: relative;
     h4 {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 600;
       color: #ea650d;
       text-wrap: wrap;
       position: absolute;
-      // width: 17%;
       margin-left: -15rem;
       margin-top: -1rem;
+      /* width: 37%; */
+      margin-right: 2rem;
+      padding: 1px;
     }
   }
 

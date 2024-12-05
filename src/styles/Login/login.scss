@@ -3,6 +3,7 @@
 .login-page {
     display: flex;
     height: 100%; // Full height coverage
+    
 
     // Left Section: Login Form
     .login-form {
@@ -196,11 +197,12 @@
     // Right Section: Illustration
     .illustration {
         flex: 1;
-        background: url('../../assets/Login/images.jpeg') no-repeat center center;
+        // background: url('../../assets/Login/images.jpeg') no-repeat center center;
         background-size:cover; // Ensure the image covers the whole container
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #000000;
         // width: 50rem;
         // height: 50rem;
     
