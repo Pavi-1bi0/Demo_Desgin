@@ -4,9 +4,18 @@ import User from '../../@types/interface/packagedetails/packagedetails';
 import { Checkbox, useMediaQuery, useTheme } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 
-
-const PackageDetails: React.FC = () => {
-    const [users, setUsers] = useState<User[]>([
+interface PackageDetailsProps {
+    inputs: {
+        input1: string; input2: string; input3: string; input4: string; input5: string; input6: string;
+    };
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
+}
+const PackageDetails: React.FC<PackageDetailsProps> = ({
+    inputs,
+    handleInputChange,
+}) => {
+    const [users] = useState<User[]>([
         { id: 1, name: 'Nagayoshi, (Takayuki)', status: 'Active', department: 'Technology Foundation (Div X)', email: 'alan.lee@nnlife.co.jp' },
     ]);
     const [open, setOpen] = useState(false);
@@ -17,12 +26,8 @@ const PackageDetails: React.FC = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleSubmitReview = () => {
-        setOpen(false);
-        alert('Review submitted successfully!');
-        // Add further logic here (e.g., API call or navigation)
-    };
-    
+
+
     // const addUser = () => {
     //     const newUser: User = {
     //         id: users.length + 1,
@@ -44,17 +49,41 @@ const PackageDetails: React.FC = () => {
             <div className="package-detail">
                 <div className="detail-item">
                     <span>Asset Owner</span><strong>Alan Lee</strong>
-                    <input type="text" placeholder="Find items" />
+                    <label>
+                        {/* Input 1:{" "} */}
+                        <input
+                            type="text"
+                            name="input1"
+                            value={inputs.input1}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
 
                 <div className="detail-item">
                     <span>Delegated Asset Owner</span><strong>Ronio Caragay</strong>
-                    <input type="text" placeholder="Find items" />
+                    <label>
+                        {/* Input 2:{" "} */}
+                        <input
+                            type="text"
+                            name="input2"
+                            value={inputs.input2}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
 
                 <div className="detail-item">
                     <span>Version</span><strong>9.24</strong>
-                    <input type="text" placeholder="" />
+                    <label>
+                        {/* Input 3:{" "} */}
+                        <input
+                            type="text"
+                            name="input3"
+                            value={inputs.input3}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
 
                 <div className="detail-item">
@@ -71,17 +100,41 @@ const PackageDetails: React.FC = () => {
             <div className="owner-details">
                 <div className="detail-item">
                     <span>CMDB Owner</span><strong>Alan Lee</strong>
-                    <input type="text" placeholder="Find items" />
+                    <label>
+                        {/* Input 4:{" "} */}
+                        <input
+                            type="text"
+                            name="input4"
+                            value={inputs.input4}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
 
                 <div className="detail-item">
                     <span>IDN Owner</span><strong>Ronio Caragay</strong>
-                    <input type="text" placeholder="Find items" />
+                    <label>
+                        {/* Input 5:{" "} */}
+                        <input
+                            type="text"
+                            name="input5"
+                            value={inputs.input5}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
 
                 <div className="detail-item">
                     <span>AD Group Owner</span><strong>Missing</strong>
-                    <input type="text" placeholder="" />
+                    <label>
+                        {/* Input 6:{" "} */}
+                        <input
+                            type="text"
+                            name="input6"
+                            value={inputs.input6}
+                            onChange={handleInputChange}
+                        />
+                    </label>
                 </div>
             </div>
 

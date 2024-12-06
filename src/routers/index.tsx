@@ -15,6 +15,10 @@ export const AppRouters = createBrowserRouter([
     path: ROUTESCONSTANT.LOGIN_PAGE, // Main component for Goal Page
     element: <RouteComponent.Login/>,
   },
+  {
+    path: ROUTESCONSTANT.DEMO_PAGE, // Main component for Goal Page
+    element: <RouteComponent.demo/>,
+  },
   // {
   //   path: ROUTESCONSTANT.NAVBAR_PAGE, // Main component for Goal Page
   //   element: <RouteComponent.Navbar/>,

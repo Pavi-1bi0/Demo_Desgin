@@ -1,43 +1,44 @@
 import React from 'react';
 import '../../styles/softwarepackage/package.scss';
-import SoftwarePackageProps from '../../@types/interface/softwarepackage/softwarepackages';
 
-const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedCardIndex, onCardSelect }) => {
-    const handleCardClick = (index: number) => {
-        onCardSelect(index === selectedCardIndex ? null : index); // Toggle selection for the same card
-    };
+interface SoftwarePackageProps {
+  packages: { name: string; lastReviewDate: string; lorem: string }[];
+  selectedItem: string | null;
+  handleSelectItem: (item: string) => void;
+}
 
-    return (
-        <div className="package-section">
-            <div className="left-title">
-                <h3 >Client Software Package</h3>
+const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem }) => {
+  return (
+    <div className="package-section">
+      <div className="left-title">
+        <h3>Client Software Package</h3>
+      </div>
+      <div className="software-package">
+        {packages.map((pkg, index) => (
+          <div
+            key={index}
+            className={`package-item card ${selectedItem === pkg.name ? 'selected' : ''}`}
+            onClick={() => handleSelectItem(pkg.name)}
+            style={{
+              color: selectedItem === pkg.name ? 'white' : 'black',
+            }}
+          >
+            <span className="package-number">{index + 1}. </span>
+            <div className="package-details">
+              <span className="package-name">{pkg.name}</span>
+              <div className="details-row">
+                <span className="review-date">Last Review Date: {pkg.lastReviewDate}</span>
+                <span className="package-description">Lorem: {pkg.lorem}</span>
+              </div>
             </div>
-            <div className="software-package">
-                {packages.map((pkg, index) => (
-                    <div
-                        key={index}
-                        className={`package-item card ${selectedCardIndex === index ? 'selected' : ''}`}
-                        onClick={() => handleCardClick(index)}
-                        style={{
-                            color: selectedCardIndex === index ? 'white' : 'black',
-                        }}
-                    >
-                        <span className="package-number">{index + 1}. </span>
-                        <div className="package-details">
-                            <span className="package-name">{pkg.name}</span>
-                            <div className="details-row">
-                                <span className="review-date">Last Review Date: {pkg.lastReviewDate}</span>
-                                <span className="package-description">Lorem: {pkg.lorem}</span>
-                            </div>
-                        </div>
-                        <button className="go-to-cmdb-btn">
-                            <a href="#!" className="go-to-cmdb">Go to CMDB</a>
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+            <button className="go-to-cmdb-btn">
+              <a href="#!" className="go-to-cmdb">Go to CMDB</a>
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default SoftwarePackage;
