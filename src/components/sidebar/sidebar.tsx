@@ -56,10 +56,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
       ref={sidebarRef}
       className={`sidebar ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"}`}
     >
-      <div className="sidebar__logo">
-        {/* <img src={logo} alt="Logo" /> */}
-        {/* <div className="sidebar__logo-icon">1bi0</div> */}
-      </div>
+     <div className="sidebar__greeting">
+        <h4>Software Development Tool</h4></div>
+
       <hr className="sidebar__divider" />
       <div className="sidebar__menu">
         {menuItems.map((item) => (

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-// import Header from "./top-navbar/top-navbar";
-// import Sidebar from "../sidebar/sidebar";
-// import EmployeeDetails from "./general-info/info";
-// import Navbar from "../navbar/navbar";
+import Navbar from "../navbar/navbar"; // Ensure Navbar has a toggle button for sidebar
+import Sidebar from "../sidebar/sidebar";
 import SoftwareDashboard from "../software-review/software-review";
+// import "./Dashboard.scss"; // Add SCSS for styling
 
 const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,15 +13,15 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-container">
-        {/* <Navbar toggleSidebar={toggleSidebar}/> */}
-        {/* <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />  */}
-      {/* <Header toggleSidebar={toggleSidebar} /> */}
-      <div className="dashboard-content">
-      {/* <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>Toggle Sidebar</button>
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} /> */}
-        {/* <div className="main-content"> */}
-          < SoftwareDashboard/>
-        {/* </div> */}
+      {/* Navbar with a hamburger toggle */}
+      <Navbar toggleSidebar={toggleSidebar} />
+      
+      {/* Sidebar component */}
+      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+
+      {/* Main content */}
+      <div className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+        <SoftwareDashboard />
       </div>
     </div>
   );

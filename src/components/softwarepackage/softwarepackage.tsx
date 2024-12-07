@@ -9,7 +9,7 @@ interface SoftwarePackageProps {
 
 const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem }) => {
   return (
-    <div className="package-section">
+    <div className="package-container">
       <div className="left-title">
         <h3>Client Software Package</h3>
       </div>

@@ -29,7 +29,8 @@ const Navbar: React.FC<navbarProps> = ({ toggleSidebar }) => {
 
       {/* Greeting */}
       <div className="navbar__greeting">
-        <h4>Software Development Tool</h4></div>
+        <h4>Software Development Tool</h4>
+        </div>
 
       {/* Icons Section */}
       <div className="navbar__icons">

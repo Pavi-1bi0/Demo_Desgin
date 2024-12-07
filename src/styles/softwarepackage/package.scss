@@ -1,19 +1,20 @@
 @import '../../styles/scss/abstract/variables';
 @import '../../styles/scss/abstract/break_points';
 
-.package-section {
+.package-container {
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 50%;
 
   .left-title {
     position: relative;
+    margin-top: 20px;
 
     h3 {
       /* text-decoration: underline; */
       position: absolute;
-      top: -3rem;
+      top: -51px;
       font-size: 18px;
       font-weight: 700;
       text-align: justify;
@@ -28,6 +29,7 @@
     width: 100%;
     max-height: 380px;
     overflow-y: auto;
+    margin-top: 15px;
 
     &::-webkit-scrollbar {
       height: 4px;
@@ -168,27 +170,23 @@
   }
 }
 
-@media screen and (max-width: $screen-xl-min) {
-  .package-section {
-    width: 90%;
-
-    .software-package {
-      max-height: 400px;
-    }
+@media screen and (max-width: $screen-xl) {
+.package-container{
+  .software-package{
+    max-height: 450px;
   }
 }
+}
 
-@media screen and (max-width: $screen-lg-min) {
-  .package-section {
-    .software-package {
-      width: 110%;
-    }
-  }
+@media screen and (max-width: $screen-xl-min) {
+ .package-container{
+  width: 95%;
+ }
 }
 
 @media screen and (max-width: $screen-md-min) {
-  .package-section {
-    width: 88%;
+  .package-container{
+    width: 130%;
 
     .software-package {
       margin-top: 10px;

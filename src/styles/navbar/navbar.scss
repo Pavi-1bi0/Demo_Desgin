@@ -1,5 +1,5 @@
 @import '../scss/abstract/variables';
-// @import '../../scss/abstract/break-points';
+@import '../scss/abstract/break_points';
 
 .navbar {
   display: flex;
@@ -17,43 +17,35 @@
   margin-left: 231px;
   margin-top: -7px;
 
-
-  // &.navbar--minimized {
-  //   width: calc(100% - 250px);
-  // }
+  .sidebar--open {
+    display: none;
+  }
 
   .toggle-icon {
     display: none;
   }
 
-
   .sidebar--closed {
     display: none;
   }
 
-  /* Full width when sidebar is closed */
-  &.navbar--expanded {
-    width: 100%;
-  }
 
   &__greeting {
     position: relative;
+
     h4 {
       font-size: 20px;
       font-weight: 600;
       color: #ea650d;
       text-wrap: wrap;
       position: absolute;
-      margin-left: -15rem;
-      margin-top: -1rem;
+      /* margin-left: -15rem; */
+      margin-top: -25px;
       /* width: 37%; */
-      margin-right: 2rem;
+      /* margin-right: 2rem; */
       padding: 1px;
+      display: none;
     }
-  }
-
-  .navbar__hamburger {
-    display: none;
   }
 
   .navbar__icons {
@@ -65,13 +57,6 @@
     margin-right: 35px;
     /* No negative margin */
     cursor: pointer;
-
-    .fa-search,
-    .fa-bell {
-      color: gray;
-      font-size: 20px;
-      /* Adjust icon size if needed */
-    }
 
     .divider {
       height: 20px;
@@ -97,30 +82,43 @@
 
 }
 
-// @media screen and (max-width:$screen-lg-min){
-//   .navbar{
-//     width: 100%;
-//     margin-left: -7px;
+@media screen and (max-width:$screen-md-min) {
+  .navbar {
+    margin-left: 0;
+    width: 100%;
 
-//     .navbar__hamburger{
-//       display: block;
-//     }
-//     .toggle-icon{
-//       display: block;
-//     }
+    &__greeting {
+     
+      margin-right: 27rem;
+      margin-top: 13px;
+      h4 {
+        display: block;
+        text-align: justify;
+        text-wrap: nowrap;
+      }
+    }
 
-//     .sidebar--open{
-//       transform: translateX(0);
-//       // position: fixed;
-//       // margin-top: 467px;
-//       margin-left: -20px;    
-//         // transform: translateX(0);
-//         margin-top: 466px;
-//     }
-//     .sidebar--closed{
-//       // margin-left: -20px;    
-//       // // transform: translateX(0);
-//       // margin-top: 466px;
-//     }
-//   }
-// }
+    .toggle-icon {
+      display: block;
+    }
+
+    .sidebar--closed {
+      display: none;
+    }
+
+    .sidebar--open {
+      display: block;
+    }
+
+    .sidebar {
+      margin-top: 28rem;
+      padding: 0;
+
+      &__footer
+    {
+      margin-top: 6rem;
+    }
+    }
+  }
+
+}

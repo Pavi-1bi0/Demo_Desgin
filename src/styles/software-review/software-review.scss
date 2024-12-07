@@ -67,48 +67,42 @@
     .ticket-section{
         display: flex;
         flex-direction: row;
-        margin-top: -5rem;
+        margin-top: -4rem;
     }
 }
 
 @media only screen and (max-width:$screen-xl-min){
-    .software-review-center{
-        width: 108%;
-
-        .header{
-            .sub-header{
-                gap: 6rem;
-            }
-        }
+   .software-review-center{
+    .package-section{
+        flex-direction: column;
     }
+    .ticket-section{
+        flex-direction: column;
+    }
+   }
 
 }
 
 @media screen and (max-width:$screen-lg-min){
     .software-review-center{
         .package-section{
-            flex-direction: column;
-        }
-        .ticket-section{
-            flex-direction: column;
-        }
-        .header{
-            .sub-header{
-                gap: 2rem;
-            }
+
         }
     }
 }
 @media screen and (max-width:$screen-md-min) {
     .software-review-center{
+        margin-left: 25px;
+        width: 68%;
         .header{
             h1{
-                font-size: 25px;
+                font-size: 20px;
                 margin-bottom: 30px;
+                text-wrap: nowrap;
             }
             .sub-header{
                 gap: 1rem;
-                margin-right: 5rem;
+                // margin-right: 5rem;
                 p{
                     font-size: 15px;
                 }

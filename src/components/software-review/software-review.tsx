@@ -17,7 +17,8 @@ const SoftwareDashboard: React.FC = () => {
   
   // Update selectedItem type to match the structure of the package
   const [selectedItem, setSelectedItem] = useState<{ name: string; lastReviewDate: string; lorem: string } | null>(null);
-  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const [inputs, setInputs] = useState({ input1: "", input2: "", input3: "", input4: "", input5: "", input6: "" });
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
 
@@ -62,20 +63,17 @@ const SoftwareDashboard: React.FC = () => {
     }
     setConfirmMove(null); // Close the confirmation dialog
   };
-
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev: any) => !prev);
+  };
   return (
     <div className="software-review-page">
       <Navbar
-        toggleSidebar={() => {
-          console.log("Toggle sidebar");
-        }}
+    toggleSidebar={toggleSidebar}
       />
-      <Sidebar
-        isSidebarOpen={false}
-        setIsSidebarOpen={(isOpen: boolean) => {
-          console.log("Sidebar open:", isOpen);
-        }}
-      />
+      {/* <Sidebar
+           isSidebarOpen={isSidebarOpen} /> */}
+    
       <div className="software-review-center">
         <header className="header">
           <h1>Client Software Package Review Center</h1>
