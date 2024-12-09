@@ -271,9 +271,55 @@
             cursor: pointer;
             width: 95%;
         }
-        .cancel-btn{
-            border: 1px solid $btn-color;
-        }
+        .custom-dialog {
+            .MuiDialog-paper {
+              border-radius: 12px;
+              background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+              box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+              padding: 20px;
+            }
+          
+            .dialog-title {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+          
+              .dialog-icon {
+                color: #4caf50;
+                margin-right: 10px;
+              }
+          
+              .close-btn {
+                color: #757575;
+              }
+            }
+          
+            .dialog-content-text {
+              font-size: 1.1rem;
+              color: #333;
+              text-align: center;
+              margin-top: 10px;
+            }
+          
+            .cancel-btn {
+              background-color: #f44336;
+              color: white;
+              text-transform: none;
+              &:hover {
+                background-color: #d32f2f;
+              }
+            }
+          
+            .submit-btn {
+              background-color: #4caf50;
+              color: white;
+              text-transform: none;
+              &:hover {
+                background-color: #388e3c;
+              }
+            }
+          }
+          
     }
 }
 

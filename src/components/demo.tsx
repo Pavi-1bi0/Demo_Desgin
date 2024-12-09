@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import Table from "./tabel";
 import InputFields from "./inputfields";
 
-const demo: React.FC = () => {
+const Demo: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
-  const [inputs, setInputs] = useState({ input1: "", input2: "" });
+  const [inputs, setInputs] = useState(
+    Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
+      (acc, obj) => ({ ...acc, ...obj }),
+      {}
+    )
+  );
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
 
   const items = ["Item 1", "Item 2", "Item 3", "Item 4"];
 
   const handleSelectItem = (item: string) => {
-    // Show popup only if one input field is filled and the other is empty
-    if (
-      selectedItem !== item && // Prevent popup when clicking the already selected item
-      ((inputs.input1 !== "" && inputs.input2 === "") || (inputs.input1 === "" && inputs.input2 !== ""))
-    ) {
+    // Check if any input is filled before switching items
+    const isAnyInputFilled = Object.values(inputs).some((val) => val !== "");
+    if (selectedItem !== item && isAnyInputFilled) {
+      // If inputs are filled and a different item is selected, ask for confirmation
       setConfirmMove(item);
     } else {
-      setSelectedItem(item);
-      setInputs({ input1: "", input2: "" }); // Reset inputs for new selection
+      // If the same item is selected, do not reset the inputs
+      if (selectedItem !== item) {
+        setSelectedItem(item);
+      }
     }
   };
 
@@ -27,17 +33,23 @@ const demo: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (inputs.input1 && inputs.input2) {
-      alert(`Submitted: ${inputs.input1}, ${inputs.input2}`);
+    const isAllInputsFilled = Object.values(inputs).every((val) => val !== "");
+    if (isAllInputsFilled) {
+      alert(`Submitted: ${Object.values(inputs).join(", ")}`);
     } else {
-      alert("Please fill in both input fields before submitting.");
+      alert("Please fill in all input fields before submitting.");
     }
   };
 
   const handleConfirmMove = (proceed: boolean) => {
     if (proceed && confirmMove) {
       setSelectedItem(confirmMove);
-      setInputs({ input1: "", input2: "" });
+      setInputs(
+        Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
+          (acc, obj) => ({ ...acc, ...obj }),
+          {}
+        )
+      );
     }
     setConfirmMove(null);
   };
@@ -45,14 +57,14 @@ const demo: React.FC = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h3>Select an Item</h3>
-      
+
       {/* Table Component */}
       <Table
         items={items}
         selectedItem={selectedItem}
         handleSelectItem={handleSelectItem}
       />
-      
+
       {/* InputFields Component */}
       <InputFields
         inputs={inputs}
@@ -78,4 +90,4 @@ const demo: React.FC = () => {
   );
 };
 
-export default demo;
+export default Demo;

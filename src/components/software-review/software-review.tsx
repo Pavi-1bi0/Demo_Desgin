@@ -6,6 +6,7 @@ import Sidebar from "../sidebar/sidebar";
 import "../../styles/software-review/software-review.scss";
 import TicketHistory from "../tickethistory/tickethistory";
 import Tickectdetails from "../ticketdetails/tickectdetails";
+import CloseIcon from '@mui/icons-material/Close';
 
 const SoftwareDashboard: React.FC = () => {
   const [packages] = useState([
@@ -14,32 +15,28 @@ const SoftwareDashboard: React.FC = () => {
     { name: "Image Ware Form Manager", lastReviewDate: "5/20/2023", lorem: "Description for Image Ware Form Manager" },
     { name: "IBM Operational Decision Manager - Rule", lastReviewDate: "6/29/2023", lorem: "Description for IBM Operational Decision Manager" },
   ]);
-  
-  // Update selectedItem type to match the structure of the package
-  const [selectedItem, setSelectedItem] = useState<{ name: string; lastReviewDate: string; lorem: string } | null>(null);
+
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [inputs, setInputs] = useState(
+    Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
+      (acc, obj) => ({ ...acc, ...obj }),
+      {}
+    )
+  );
+  const [confirmMove, setConfirmMove] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [inputs, setInputs] = useState({ input1: "", input2: "", input3: "", input4: "", input5: "", input6: "" });
-  const [confirmMove, setConfirmMove] = useState<string | null>(null);
-
-  // Handle item selection and validation before moving to a new item
   const handleSelectItem = (item: string) => {
-    // Validate input fields before allowing the user to move to a new package
-    if (
-      selectedItem?.name !== item && // Prevent popup for the already selected card
-      (
-        (inputs.input1 !== "" && inputs.input2 === "") ||
-        (inputs.input1 === "" && inputs.input2 !== "") ||
-        (inputs.input3 !== "" && inputs.input4 === "") ||
-        (inputs.input3 === "" && inputs.input4 !== "") ||
-        (inputs.input5 !== "" && inputs.input6 === "") ||
-        (inputs.input5 === "" && inputs.input6 !== "")
-      )
-    ) {
-      setConfirmMove(item); // Trigger confirmation to move
+    // Check if any input is filled before switching items
+    const isAnyInputFilled = Object.values(inputs).some((val) => val !== "");
+    if (selectedItem !== item && isAnyInputFilled) {
+      // If inputs are filled and a different item is selected, ask for confirmation
+      setConfirmMove(item);
     } else {
-      setSelectedItem(packages.find(pkg => pkg.name === item) || null); // Set the selected item to the package that matches
-      setInputs({ input1: "", input2: "", input3: "", input4: "", input5: "", input6: "" }); // Reset inputs for the new selection
+      // If the same item is selected, do not reset the inputs
+      if (selectedItem !== item) {
+        setSelectedItem(item);
+      }
     }
   };
 
@@ -48,44 +45,55 @@ const SoftwareDashboard: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (inputs.input1 && inputs.input2) {
-      alert(`Submitted: ${inputs.input1}, ${inputs.input2}`);
+    const isAllInputsFilled = Object.values(inputs).every((val) => val !== "");
+    if (isAllInputsFilled) {
+      alert(`Submitted: ${Object.values(inputs).join(", ")}`);
     } else {
-      alert("Please fill in both input fields before submitting.");
+      alert("Please fill in all input fields before submitting.");
     }
   };
 
   const handleConfirmMove = (proceed: boolean) => {
     if (proceed && confirmMove) {
-      // Proceed with the move and update the selected item
-      setSelectedItem(packages.find(pkg => pkg.name === confirmMove) || null);
-      setInputs({ input1: "", input2: "", input3: "", input4: "", input5: "", input6: "" }); // Reset inputs on move
+      setSelectedItem(confirmMove);
+      setInputs(
+        Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
+          (acc, obj) => ({ ...acc, ...obj }),
+          {}
+        )
+      );
     }
-    setConfirmMove(null); // Close the confirmation dialog
+    setConfirmMove(null);
   };
+
+
+  const handleClose = () => handleConfirmMove(false); // Close popup
+
+
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev: any) => !prev);
+    setIsSidebarOpen((prev) => !prev);
   };
+
   return (
     <div className="software-review-page">
-      <Navbar
-    toggleSidebar={toggleSidebar}
-      />
-      {/* <Sidebar
-           isSidebarOpen={isSidebarOpen} /> */}
-    
+      <Navbar toggleSidebar={toggleSidebar} />
+
       <div className="software-review-center">
         <header className="header">
           <h1>Client Software Package Review Center</h1>
           <div className="sub-header">
-            <p>Owner: <strong>Alan Lee</strong></p>
-            <p># of Software: <strong>4</strong></p>
+            <p>
+              Owner: <strong>Alan Lee</strong>
+            </p>
+            <p>
+              # of Software: <strong>4</strong>
+            </p>
           </div>
         </header>
         <div className="package-section">
           <SoftwarePackage
             packages={packages}
-            selectedItem={selectedItem ? selectedItem.name : null} // Pass name as selected item
+            selectedItem={selectedItem}
             handleSelectItem={handleSelectItem}
           />
           <PackageDetails
@@ -100,54 +108,67 @@ const SoftwareDashboard: React.FC = () => {
         </div>
 
         {confirmMove && (
-  <div
-    style={{
-      position: "fixed",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "white",
-      padding: "20px",
-      borderRadius: "8px",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-      zIndex: 1000,
-      maxWidth: "400px",
-      width: "100%",
-    }}
-  >
-    <h3>May we move to the next item or stay here?</h3>
-    <div style={{ marginTop: "15px", textAlign: "center" }}>
-      <button
-        onClick={() => handleConfirmMove(true)}
-        style={{
-          marginRight: "10px",
-          padding: "10px 20px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Move
-      </button>
-      <button
-        onClick={() => handleConfirmMove(false)}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#dc3545",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Stay
-      </button>
-    </div>
-  </div>
-)}
-
+          <div
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              backgroundColor: "white",
+              padding: "20px",
+              borderRadius: "8px",
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+              zIndex: 1000,
+              maxWidth: "400px",
+              width: "100%",
+            }}
+          >
+             <button
+                        onClick={handleClose}
+                        style={{
+                            position: 'absolute',
+                            top: '10px',
+                            right: '10px',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            padding: '0',
+                        }}
+                    >
+                        <CloseIcon style={{ fontSize: '24px', color: '#dc3545' }} />
+                    </button>
+            <h3>May we move to the next item or stay here?</h3>
+            <div style={{ marginTop: "15px", textAlign: "center" }}>
+              <button
+                onClick={() => handleConfirmMove(true)}
+                style={{
+                  marginRight: "10px",
+                  padding: "10px 20px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Move
+              </button>
+              <button
+                onClick={() => handleConfirmMove(false)}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#dc3545",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Stay
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
