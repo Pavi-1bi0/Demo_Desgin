@@ -6,7 +6,7 @@ import Sidebar from "../sidebar/sidebar";
 import "../../styles/software-review/software-review.scss";
 import TicketHistory from "../tickethistory/tickethistory";
 import Tickectdetails from "../ticketdetails/tickectdetails";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 const SoftwareDashboard: React.FC = () => {
   const [packages] = useState([
@@ -17,6 +17,12 @@ const SoftwareDashboard: React.FC = () => {
   ]);
 
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedCard, setSelectedCard] = useState<{
+    name: string;
+    lastReviewDate: string;
+    lorem: string;
+  } | null>(null);
+
   const [inputs, setInputs] = useState(
     Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
       (acc, obj) => ({ ...acc, ...obj }),
@@ -25,17 +31,21 @@ const SoftwareDashboard: React.FC = () => {
   );
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isItemLoading, setIsItemLoading] = useState(false); // State to track loading for selected item
 
   const handleSelectItem = (item: string) => {
-    // Check if any input is filled before switching items
     const isAnyInputFilled = Object.values(inputs).some((val) => val !== "");
     if (selectedItem !== item && isAnyInputFilled) {
-      // If inputs are filled and a different item is selected, ask for confirmation
       setConfirmMove(item);
     } else {
-      // If the same item is selected, do not reset the inputs
       if (selectedItem !== item) {
         setSelectedItem(item);
+        setIsItemLoading(true); // Start loading for selected item
+        setTimeout(() => {
+          const selectedPackage = packages.find((pkg) => pkg.name === item) || null;
+          setSelectedCard(selectedPackage);
+          setIsItemLoading(false); // Stop loading after delay
+        }, 3000);
       }
     }
   };
@@ -56,6 +66,12 @@ const SoftwareDashboard: React.FC = () => {
   const handleConfirmMove = (proceed: boolean) => {
     if (proceed && confirmMove) {
       setSelectedItem(confirmMove);
+      setIsItemLoading(true); // Start loading for selected item
+      setTimeout(() => {
+        const selectedPackage = packages.find((pkg) => pkg.name === confirmMove) || null;
+        setSelectedCard(selectedPackage);
+        setIsItemLoading(false); // Stop loading after delay
+      }, 3000);
       setInputs(
         Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
           (acc, obj) => ({ ...acc, ...obj }),
@@ -66,9 +82,7 @@ const SoftwareDashboard: React.FC = () => {
     setConfirmMove(null);
   };
 
-
   const handleClose = () => handleConfirmMove(false); // Close popup
-
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -103,7 +117,7 @@ const SoftwareDashboard: React.FC = () => {
           />
         </div>
         <div className="ticket-section">
-          <TicketHistory selectedCard={selectedItem} />
+          <TicketHistory selectedCard={selectedCard} isItemLoading={isItemLoading} />
           <Tickectdetails />
         </div>
 
@@ -123,20 +137,20 @@ const SoftwareDashboard: React.FC = () => {
               width: "100%",
             }}
           >
-             <button
-                        onClick={handleClose}
-                        style={{
-                            position: 'absolute',
-                            top: '10px',
-                            right: '10px',
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '0',
-                        }}
-                    >
-                        <CloseIcon style={{ fontSize: '24px', color: '#dc3545' }} />
-                    </button>
+            <button
+              onClick={handleClose}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0",
+              }}
+            >
+              <CloseIcon style={{ fontSize: "24px", color: "#dc3545" }} />
+            </button>
             <h3>May we move to the next item or stay here?</h3>
             <div style={{ marginTop: "15px", textAlign: "center" }}>
               <button
