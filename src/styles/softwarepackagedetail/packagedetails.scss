@@ -212,15 +212,21 @@
                     .user-info,
                     .user-meta {
                         margin-right: 8px;
-
+                        .remove-option{
+                            margin-top: -7px;
+                        }
                         p {
-                            margin: 4px 0;
+                            margin: 8px 0;
                             color: $default-colr;
+                            font-size: 13px;
                         }
 
                         a {
                             color: $primary-color;
                             text-decoration: none;
+                        }
+                        .css-1umw9bq-MuiSvgIcon-root{
+                            font-size: 15px;
                         }
                     }
 
@@ -252,6 +258,11 @@
                             }
 
                         }
+                    }
+                    .user-mail{
+                        margin-top: 8px;
+                        font-size: 13px;
+                        margin-right: 13px;
                     }
                 }
             }

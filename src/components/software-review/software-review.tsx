@@ -45,7 +45,7 @@ const SoftwareDashboard: React.FC = () => {
           const selectedPackage = packages.find((pkg) => pkg.name === item) || null;
           setSelectedCard(selectedPackage);
           setIsItemLoading(false); // Stop loading after delay
-        }, 3000);
+        }, 1000);
       }
     }
   };
@@ -120,6 +120,7 @@ const SoftwareDashboard: React.FC = () => {
           <TicketHistory selectedCard={selectedCard} isItemLoading={isItemLoading} />
           <Tickectdetails />
         </div>
+
 
         {confirmMove && (
           <div

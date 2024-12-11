@@ -135,11 +135,11 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     <p>{user.department}</p>
                                     <div className="remove-option">
                                         <label>
+                                          
+                                            
                                             Remove user from Software Package?
-                                            <p>
-                                                Action Required Software:
                                                 <Checkbox defaultChecked />
-                                            </p>
+                                            
                                         </label>
                                     </div>
                                 </div>

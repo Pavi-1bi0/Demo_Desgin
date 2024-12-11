@@ -42,12 +42,23 @@
         padding: 10px;
         max-height: 200px;
         height: 100%;
-
+        
+          
         
         .ticket-table {
             width: 100%;
             border-collapse: collapse;
-
+            .loading-spinner {
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+                // // height: 100px;
+                font-size: 30px;
+                // font-weight: bold;
+                // width: 100px;
+                // height: 100px;
+                color:$btn-color;
+              }
             thead {
                 th {
                     color: $default-colr;

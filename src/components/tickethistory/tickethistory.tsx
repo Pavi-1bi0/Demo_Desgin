@@ -1,12 +1,12 @@
-import React from 'react';
-import '../../styles/tickethistory/tickethistory.scss';
-import TicketHistoryProps from '../../@types/interface/Tickethistory/Tickethistory';
+import React from "react";
+import "../../styles/tickethistory/tickethistory.scss";
+import TicketHistoryProps from "../../@types/interface/Tickethistory/Tickethistory";
 
-// interface TicketHistoryProps {
-//   selectedCard: { name: string; lastReviewDate: string; lorem: string } | null;
-// }
+// Import the necessary Font Awesome components and icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const TicketHistory: React.FC<TicketHistoryProps> = ({ selectedCard }) => {
+const TicketHistory: React.FC<TicketHistoryProps> = ({ selectedCard, isItemLoading }) => {
   return (
     <div className="tickect-page">
       <div className="header">
@@ -22,7 +22,14 @@ const TicketHistory: React.FC<TicketHistoryProps> = ({ selectedCard }) => {
             </tr>
           </thead>
           <tbody>
-            {selectedCard ? (
+            {isItemLoading ? (
+              // Show a placeholder row while loading
+              <tr>
+                <td colSpan={3} className="loading-spinner">
+                  <FontAwesomeIcon icon={faSpinner} spin /> {/* Use the spinner icon */}
+                </td>
+              </tr>
+            ) : selectedCard ? (
               <tr>
                 <td>{selectedCard.lastReviewDate}</td>
                 <td>{selectedCard.name}</td>
