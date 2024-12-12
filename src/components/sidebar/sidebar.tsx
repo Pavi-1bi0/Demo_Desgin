@@ -4,11 +4,11 @@ import "../../styles/sidebar/sidebar.scss";
 // import logo from "../../../assets/Dashboard/navbar/Logo.png";
 import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
 import FaxOutlinedIcon from "@mui/icons-material/FaxOutlined";
-import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
+// import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+// import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+// import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+// import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 
 interface SidebarProps {

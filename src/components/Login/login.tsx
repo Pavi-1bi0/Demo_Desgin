@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/Login/login.scss';
-import img from '../../assets/Login/images.jpeg';
+// import img from '../../assets/Login/images.jpeg';
 
 import { useNavigate } from 'react-router-dom';
 const Login: React.FC = () => {

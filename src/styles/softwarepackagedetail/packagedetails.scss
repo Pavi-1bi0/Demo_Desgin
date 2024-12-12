@@ -9,6 +9,8 @@
     width: 50%;
     margin-top: 45px;
 
+
+
     .right-title {
         position: relative;
 
@@ -34,6 +36,58 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+
+            .error-message {
+                color: red;
+                font-size: 12px;
+                margin-top: -1px;
+                margin-bottom: -8px;
+            }
+
+            .suggestions-list {
+                color: black !important;
+                // position: absolute;
+                background-color: white;
+                /* Background color of the suggestion box */
+                border: 1px solid #ccc;
+                /* Border styling */
+                border-radius: 4px;
+                /* Rounded corners */
+                max-height: 150px;
+                /* Max height for scrollable list */
+                overflow-y: auto;
+                /* Add scroll if content exceeds max height */
+                z-index: 1000 !important;
+                /* Ensure the suggestions appear above other elements */
+                width: 100%;
+                /* Match the input width */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                /* Optional shadow for better visibility */
+                list-style: none;
+                /* Remove default list styling */
+                margin: 0;
+                /* Remove default margin */
+                padding: 0;
+                /* Remove default padding */
+            }
+
+            .suggestion-item {
+                padding: 8px 12px;
+                /* Padding for each suggestion */
+                cursor: pointer;
+                /* Pointer cursor to indicate clickable items */
+                font-size: 14px;
+                /* Font size */
+            }
+
+            .suggestion-item:hover,
+            .suggestion-item.active {
+                background-color: #007bff;
+                /* Highlight color for hover or active state */
+                color: white;
+                /* Text color for highlighted item */
+            }
+
 
             .ad,
             .ad-str {
@@ -88,6 +142,56 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            .error-message {
+                color: red;
+                font-size: 12px;
+                margin-top: -1px;
+                margin-bottom: -8px;
+            }
+            
+            .suggestions-list {
+                color: black !important;
+                // position: absolute;
+                background-color: white;
+                /* Background color of the suggestion box */
+                border: 1px solid #ccc;
+                /* Border styling */
+                border-radius: 4px;
+                /* Rounded corners */
+                max-height: 150px;
+                /* Max height for scrollable list */
+                overflow-y: auto;
+                /* Add scroll if content exceeds max height */
+                z-index: 1000 !important;
+                /* Ensure the suggestions appear above other elements */
+                width: 100%;
+                /* Match the input width */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                /* Optional shadow for better visibility */
+                list-style: none;
+                /* Remove default list styling */
+                margin: 0;
+                /* Remove default margin */
+                padding: 0;
+                /* Remove default padding */
+            }
+
+            .suggestion-item {
+                padding: 8px 12px;
+                /* Padding for each suggestion */
+                cursor: pointer;
+                /* Pointer cursor to indicate clickable items */
+                font-size: 14px;
+                /* Font size */
+            }
+
+            .suggestion-item:hover,
+            .suggestion-item.active {
+                background-color: #007bff;
+                /* Highlight color for hover or active state */
+                color: white;
+                /* Text color for highlighted item */
+            }
 
             .ad,
             .ad-str {
@@ -134,7 +238,8 @@
         .checkbox-wrapper {
             margin-left: 18rem;
             display: flex;
-            .user{
+
+            .user {
                 // padding-left: 85px;
                 color: $default-colr;
                 margin-top: 7px;
@@ -162,30 +267,31 @@
             /* Slimmer horizontal scrollbar */
             width: 4px;
             /* Slimmer vertical scrollbar */
-          }
-      
-          &::-webkit-scrollbar-track {
+        }
+
+        &::-webkit-scrollbar-track {
             background: #e0e0e0;
             /* Light gray track for a clean appearance */
-          }
-      
-          &::-webkit-scrollbar-thumb {
+        }
+
+        &::-webkit-scrollbar-thumb {
             background: #b0b0b0;
             /* Gray thumb for a neutral, linear look */
             border-radius: 0;
             /* No rounded corners for a linear design */
-          }
-      
-          &::-webkit-scrollbar-thumb:hover {
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
             background: #909090;
             /* Slightly darker gray on hover */
-          }
-      
-          /* Firefox styles */
-          scrollbar-width: thin;
-          /* Thinner scrollbar */
-          scrollbar-color: #b0b0b0 #e0e0e0;
-          /* Thumb and track colors */
+        }
+
+        /* Firefox styles */
+        scrollbar-width: thin;
+        /* Thinner scrollbar */
+        scrollbar-color: #b0b0b0 #e0e0e0;
+
+        /* Thumb and track colors */
         .user-list {
             .user-row {
                 display: flex;
@@ -212,9 +318,11 @@
                     .user-info,
                     .user-meta {
                         margin-right: 8px;
-                        .remove-option{
+
+                        .remove-option {
                             margin-top: -7px;
                         }
+
                         p {
                             margin: 8px 0;
                             color: $default-colr;
@@ -225,7 +333,8 @@
                             color: $primary-color;
                             text-decoration: none;
                         }
-                        .css-1umw9bq-MuiSvgIcon-root{
+
+                        .css-1umw9bq-MuiSvgIcon-root {
                             font-size: 15px;
                         }
                     }
@@ -259,7 +368,8 @@
 
                         }
                     }
-                    .user-mail{
+
+                    .user-mail {
                         margin-top: 8px;
                         font-size: 13px;
                         margin-right: 13px;
@@ -282,55 +392,58 @@
             cursor: pointer;
             width: 95%;
         }
+
         .custom-dialog {
             .MuiDialog-paper {
-              border-radius: 12px;
-              background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
-              box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-              padding: 20px;
+                border-radius: 12px;
+                background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                padding: 20px;
             }
-          
+
             .dialog-title {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-          
-              .dialog-icon {
-                color: #4caf50;
-                margin-right: 10px;
-              }
-          
-              .close-btn {
-                color: #757575;
-              }
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .dialog-icon {
+                    color: #4caf50;
+                    margin-right: 10px;
+                }
+
+                .close-btn {
+                    color: #757575;
+                }
             }
-          
+
             .dialog-content-text {
-              font-size: 1.1rem;
-              color: #333;
-              text-align: center;
-              margin-top: 10px;
+                font-size: 1.1rem;
+                color: #333;
+                text-align: center;
+                margin-top: 10px;
             }
-          
+
             .cancel-btn {
-              background-color: #f44336;
-              color: white;
-              text-transform: none;
-              &:hover {
-                background-color: #d32f2f;
-              }
+                background-color: #f44336;
+                color: white;
+                text-transform: none;
+
+                &:hover {
+                    background-color: #d32f2f;
+                }
             }
-          
+
             .submit-btn {
-              background-color: #4caf50;
-              color: white;
-              text-transform: none;
-              &:hover {
-                background-color: #388e3c;
-              }
+                background-color: #4caf50;
+                color: white;
+                text-transform: none;
+
+                &:hover {
+                    background-color: #388e3c;
+                }
             }
-          }
-          
+        }
+
     }
 }
 
@@ -339,9 +452,11 @@
         .package-detail {
             gap: 15px;
             flex-wrap: wrap;
-            .detail-item{
+
+            .detail-item {
+
                 .ad,
-                .ad-str{
+                .ad-str {
                     margin-left: 0;
                 }
             }
@@ -351,7 +466,7 @@
 
 @media (max-width: $screen-xl-min) {
     .software-package-details {
-     width: 95%;
+        width: 95%;
 
         .package-detail {
             flex-wrap: nowrap;
@@ -366,19 +481,20 @@
 
 @media screen and (max-width:$screen-lg-min) {
     .software-package-details {
-       
+
         .package-detail {
             gap: 20px !important;
             flex-wrap: wrap;
         }
 
-   
+
     }
 }
 
 @media screen and (max-width:$screen-md-min) {
     .software-package-details {
         width: 130%;
+
         .package-detail {
             gap: 15px !important;
             // width: 93%;

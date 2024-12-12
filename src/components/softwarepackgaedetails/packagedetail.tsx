@@ -13,7 +13,7 @@ interface InputFieldsProps {
 const PackageDetails: React.FC<InputFieldsProps> = ({
     inputs,
     handleInputChange,
-    handleSubmit,
+    // handleSubmit,
 }) => {
     const [users] = useState<User[]>([
         {
@@ -25,6 +25,35 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
         },
     ]);
     const [confirmMove, setConfirmMove] = useState(false);
+    const [suggestions, setSuggestions] = useState<{ [key: string]: string[] }>({});
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const validateInputs = () => {
+        const newErrors: { [key: string]: string } = {};
+
+        // Check each input field for empty value
+        inputLabels.forEach((_, index) => {
+            const key = `input${index + 1}`;
+            if (!inputs[key]) {
+                newErrors[key] = 'This field is required';
+            }
+        });
+
+        // Update errors state if any validation fails
+        setErrors(newErrors);
+
+        // Return if the validation passed or failed
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const suggestionsData: { [key: string]: string[] } = {
+        input1: ['Alan Lee', 'Alice Brown', 'Amelia Clarke'],
+        input2: ['Ronio Caragay', 'Ravi Singh', 'Roxanne Miller'],
+        input3: ['9.24', '9.25', '10.0'],
+        input4: ['Alan Lee', 'Alice Green', 'Amelia Clarke'],
+        input5: ['Ronio Caragay', 'Ravi Singh', 'Roxanne Taylor'],
+        input6: ['Missing', 'Pending', 'Completed'],
+    };
 
     const inputLabels = [
         'Asset Owner',
@@ -34,45 +63,117 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
         'IDN Owner',
         'AD Group Owner',
     ];
+    const handleSubmit = () => {
+        if (validateInputs()) {
+            console.log('All fields are filled');
+            // Handle form submission here
+        } else {
+            console.log('Please fill all fields');
+        }
+    };
 
     const handleConfirmMove = (move: boolean) => {
         setConfirmMove(false);
         if (move) {
             console.log('Move to the next item');
-            // Add your logic for moving to the next item
         } else {
             console.log('Stay on this page');
-            // Add your logic for staying on the current page
         }
     };
 
-    const handleClose = () => setConfirmMove(false); // Close popup
+    const handleClose = () => setConfirmMove(false);
+
+    const handleInputFocus = (key: string) => {
+        setSuggestions((prev) => ({ ...prev, [key]: suggestionsData[key] || [] }));
+    };
+
+    const handleInputBlur = (key: string) => {
+        setTimeout(() => {
+            setSuggestions((prev) => ({ ...prev, [key]: [] }));
+        }, 200);
+    };
+
+    const handleSuggestionClick = (key: string, value: string) => {
+        handleInputChange({
+            target: {
+                name: key,
+                value,
+            },
+        } as React.ChangeEvent<HTMLInputElement>);
+        setSuggestions((prev) => ({ ...prev, [key]: [] }));
+    };
+
+    const filterSuggestions = (key: string, value: string) => {
+        const filtered = (suggestionsData[key] || []).filter((s) =>
+            s.toLowerCase().includes(value.toLowerCase())
+        );
+        setSuggestions((prev) => ({ ...prev, [key]: filtered }));
+    };
+
     return (
         <div className="software-package-details">
             <div className="right-title">
                 <h3>Client Software Package Details</h3>
             </div>
             <div className="package-detail">
-                {inputLabels.slice(0, 3).map((label, index) => (
-                    <div className="detail-item" key={`input${index + 1}`}>
-                        <span>{label}</span>
-                        <strong>
-                            {index === 0
-                                ? 'Alan Lee'
-                                : index === 1
-                                    ? 'Ronio Caragay'
-                                    : '9.24'}
-                        </strong>
-                        <label>
-                            <input
-                                type="text"
-                                name={`input${index + 1}`}
-                                value={inputs[`input${index + 1}`]}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                    </div>
-                ))}
+                {inputLabels.slice(0, 3).map((label, index) => {
+                    const key = `input${index + 1}`;
+                    return (
+                        <div className="detail-item" key={key}>
+                            <span>{label}</span>
+                            <strong>
+                                {index === 0
+                                    ? 'Alan Lee'
+                                    : index === 1
+                                        ? 'Ronio Caragay'
+                                        : '9.24'}
+                            </strong>
+                            <label>
+                                <input
+                                    type="text"
+                                    name={key}
+                                    value={inputs[key]}
+                                    onChange={(e) => {
+                                        handleInputChange(e);
+                                        filterSuggestions(key, e.target.value);
+                                    }}
+                                    onFocus={() => handleInputFocus(key)}
+                                    onBlur={() => handleInputBlur(key)}
+                                />
+                                {suggestions[key] && suggestions[key].length > 0 && (
+                                    <div className="suggestion-list" style={{
+                                        position: 'absolute',   // Position it relative to the nearest positioned ancestor
+                                        // top: '0',               // Adjust to place the list in the right position
+                                        // left: '0',              // Adjust to place the list in the right position
+                                        zIndex: 999,            // Ensure it overlaps other content
+                                        backgroundColor: 'white',
+                                        border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
+                                        width: '133px',           // You can adjust width as needed
+                                        maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
+                                        overflowY: 'auto',      // Enables scrolling if there are many suggestions
+                                    }}>
+                                        {suggestions[key].map((suggestion, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="suggestion-item"
+                                                style={{
+                                                    color: 'black',
+                                                    padding: '5px',
+                                                    cursor: 'pointer',
+                                                }}
+                                                onClick={() => handleSuggestionClick(key, suggestion)}
+                                            >
+                                                {suggestion}
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                )}
+                                  {errors[key] && <p className="error-message">{errors[key]}</p>}
+                            </label>
+                        </div>
+                    );
+                })}
                 <div className="detail-item">
                     <span className="ad">AD Group</span>
                     <strong className="ad-str">GRAPAC-JP-Image</strong>
@@ -86,26 +187,64 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                 <h4>Client Software Package Owner Details</h4>
             </div>
             <div className="owner-details">
-                {inputLabels.slice(3).map((label, index) => (
-                    <div className="detail-item" key={`input${index + 4}`}>
-                        <span>{label}</span>
-                        <strong>
-                            {index === 0
-                                ? 'Alan Lee'
-                                : index === 1
-                                    ? 'Ronio Caragay'
-                                    : 'Missing'}
-                        </strong>
-                        <label>
-                            <input
-                                type="text"
-                                name={`input${index + 4}`}
-                                value={inputs[`input${index + 4}`]}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                    </div>
-                ))}
+                {inputLabels.slice(3).map((label, index) => {
+                    const key = `input${index + 4}`;
+                    return (
+                        <div className="detail-item" key={key}>
+                            <span>{label}</span>
+                            <strong>
+                                {index === 0
+                                    ? 'Alan Lee'
+                                    : index === 1
+                                        ? 'Ronio Caragay'
+                                        : 'Missing'}
+                            </strong>
+                            <label>
+                                <input
+                                    type="text"
+                                    name={key}
+                                    value={inputs[key]}
+                                    onChange={(e) => {
+                                        handleInputChange(e);
+                                        filterSuggestions(key, e.target.value);
+                                    }}
+                                    onFocus={() => handleInputFocus(key)}
+                                    onBlur={() => handleInputBlur(key)}
+                                />
+                                {suggestions[key] && suggestions[key].length > 0 && (
+                                    <div className="suggestion-list" style={{
+                                        position: 'absolute',    // Position it relative to its nearest positioned ancestor
+                                        // top: '0',                // Adjust the position as necessary
+                                        // left: '0',               // Adjust the position as necessary
+                                        zIndex: 999,             // Ensure it overlaps other content
+                                        backgroundColor: 'white',
+                                        border: '1px solid #ccc',  // Optional: Adds a border for better visibility
+                                        width: '133px',            // You can adjust the width as needed
+                                        maxHeight: '300px',       // Optional: Limits the height if you have many suggestions
+                                        overflowY: 'auto',       // Allows scrolling when there are many suggestions
+                                    }}>
+                                        {suggestions[key].map((suggestion, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="suggestion-item"
+                                                style={{
+                                                    color: 'black',      // Text color
+                                                    padding: '10px',      // Adds space inside each item
+                                                    cursor: 'pointer',   // Shows a pointer cursor to indicate it is clickable
+                                                }}
+                                                onClick={() => handleSuggestionClick(key, suggestion)}
+                                            >
+                                                {suggestion}
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                )}
+                                  {errors[key] && <p className="error-message">{errors[key]}</p>}
+                            </label>
+                        </div>
+                    );
+                })}
             </div>
             <div className="title-sec">
                 <h4 className="user-title">Client Software Package User List</h4>
@@ -135,11 +274,8 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     <p>{user.department}</p>
                                     <div className="remove-option">
                                         <label>
-                                          
-                                            
                                             Remove user from Software Package?
-                                                <Checkbox defaultChecked />
-                                            
+                                            <Checkbox defaultChecked />
                                         </label>
                                     </div>
                                 </div>
@@ -152,12 +288,14 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                 </div>
             </div>
             <div className="footer">
-                <button className="review-complete" onClick={() => setConfirmMove(true)}>
+                <button className="review-complete" onClick={() => {
+                    handleSubmit(); // Call handleSubmit first
+                    setConfirmMove(true); // Then set the confirm move state
+                }}>
                     Review Complete
                 </button>
 
-                {/* Custom Popup */}
-                {/* Popup */}
+
                 {confirmMove && (
                     <div
                         style={{
@@ -174,26 +312,23 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                             width: '100%',
                         }}
                     >
-                        {/* Cancel Button (Top-right corner) */}
-                          {/* Cancel Icon (Top-right corner) */}
-                    <button
-                        onClick={handleClose}
-                        style={{
-                            position: 'absolute',
-                            top: '10px',
-                            right: '10px',
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '0',
-                        }}
-                    >
-                        <CloseIcon style={{ fontSize: '24px', color: '#dc3545' }} />
-                    </button>
+                        <button
+                            onClick={handleClose}
+                            style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                background: 'none',
+                                border: 'none',
+                                cursor: 'pointer',
+                                padding: '0',
+                            }}
+                        >
+                            <CloseIcon style={{ fontSize: '24px', color: '#dc3545' }} />
+                        </button>
 
-                        <h3 style={{color:'black'}}>we submit your data?</h3>
+                        <h3 style={{ color: 'black' }}>We submit your data?</h3>
                         <div style={{ marginTop: '15px', textAlign: 'center' }}>
-                            {/* Submit Button */}
                             <button
                                 onClick={() => handleConfirmMove(true)}
                                 style={{
@@ -206,9 +341,8 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     cursor: 'pointer',
                                 }}
                             >
-                                submit
+                                Submit
                             </button>
-                            {/* Stay Button */}
                             <button
                                 onClick={() => handleConfirmMove(false)}
                                 style={{
@@ -220,14 +354,13 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     cursor: 'pointer',
                                 }}
                             >
-                                cancel
+                                Cancel
                             </button>
                         </div>
                     </div>
                 )}
             </div>
         </div>
-
     );
 };
 

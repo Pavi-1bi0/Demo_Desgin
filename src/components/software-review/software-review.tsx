@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SoftwarePackage from "../softwarepackage/softwarepackage";
 import PackageDetails from "../softwarepackgaedetails/packagedetail";
 import Navbar from "../navbar/navbar";
-import Sidebar from "../sidebar/sidebar";
+// import Sidebar from "../sidebar/sidebar";
 import "../../styles/software-review/software-review.scss";
 import TicketHistory from "../tickethistory/tickethistory";
 import Tickectdetails from "../ticketdetails/tickectdetails";
@@ -30,7 +30,7 @@ const SoftwareDashboard: React.FC = () => {
     )
   );
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [, setIsSidebarOpen] = useState(false);
   const [isItemLoading, setIsItemLoading] = useState(false); // State to track loading for selected item
 
   const handleSelectItem = (item: string) => {

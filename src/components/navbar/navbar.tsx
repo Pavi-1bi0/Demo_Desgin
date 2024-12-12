@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../../styles/navbar/navbar.scss";
 import Divider from "@mui/material/Divider";
 // import img from "../../../assets/Dashboard/navbar/images.jpeg";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+// import SearchIcon from "@mui/icons-material/Search";
+// import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger icon
 import { IconButton } from "@mui/material";
 import Sidebar from "../sidebar/sidebar";
@@ -14,7 +14,7 @@ interface navbarProps {
   toggleSidebar: () => void;
 }
 
-const Navbar: React.FC<navbarProps> = ({ toggleSidebar }) => {
+const Navbar: React.FC<navbarProps> = ({  }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
