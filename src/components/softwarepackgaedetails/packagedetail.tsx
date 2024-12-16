@@ -66,9 +66,10 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
     const handleSubmit = () => {
         if (validateInputs()) {
             console.log('All fields are filled');
-            // Handle form submission here
+            return true; // Validation successful
         } else {
             console.log('Please fill all fields');
+            return false; // Validation failed
         }
     };
 
@@ -141,35 +142,52 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     onBlur={() => handleInputBlur(key)}
                                 />
                                 {suggestions[key] && suggestions[key].length > 0 && (
-                                    <div className="suggestion-list" style={{
-                                        position: 'absolute',   // Position it relative to the nearest positioned ancestor
-                                        // top: '0',               // Adjust to place the list in the right position
-                                        // left: '0',              // Adjust to place the list in the right position
-                                        zIndex: 999,            // Ensure it overlaps other content
-                                        backgroundColor: 'white',
-                                        border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
-                                        width: '133px',           // You can adjust width as needed
-                                        maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
-                                        overflowY: 'auto',      // Enables scrolling if there are many suggestions
-                                    }}>
-                                        {suggestions[key].map((suggestion, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="suggestion-item"
-                                                style={{
-                                                    color: 'black',
-                                                    padding: '5px',
-                                                    cursor: 'pointer',
-                                                }}
-                                                onClick={() => handleSuggestionClick(key, suggestion)}
-                                            >
-                                                {suggestion}
-                                            </div>
-                                        ))}
+                                    <div
+                                        className="dropdown-container"
+                                        style={{
+                                            position: 'relative', // Keep parent container positioned relative
+                                        }}
+                                    >
+                                        {/* <input
+                                            type="text"
+                                            style={{
+                                                // width: '100%',
+                                                padding: '5px',
+                                                border: '1px solid #ccc',
+                                            }}
+                                        /> */}
+                                        <div
+                                            className="suggestion-list"
+                                            style={{
+                                                position: 'absolute',  // Absolute positioning to overlap below content
+                                                top: '100%',           // Position right below the input field
+                                                left: 0,               // Align with the left of the parent container
+                                                zIndex: 999,           // Ensure it overlaps other content
+                                                backgroundColor: 'white',
+                                                border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
+                                                width: '100%',           // Match the input width
+                                                maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
+                                                overflowY: 'auto',       // Enables scrolling if there are many suggestions
+                                            }}
+                                        >
+                                            {suggestions[key].map((suggestion, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="suggestion-item"
+                                                    style={{
+                                                        color: 'black',
+                                                        padding: '5px',
+                                                        cursor: 'pointer',
+                                                    }}
+                                                    onClick={() => handleSuggestionClick(key, suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-
                                 )}
-                                  {errors[key] && <p className="error-message">{errors[key]}</p>}
+                                {errors[key] && <p className="error-message">{errors[key]}</p>}
                             </label>
                         </div>
                     );
@@ -212,35 +230,54 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     onBlur={() => handleInputBlur(key)}
                                 />
                                 {suggestions[key] && suggestions[key].length > 0 && (
-                                    <div className="suggestion-list" style={{
-                                        position: 'absolute',    // Position it relative to its nearest positioned ancestor
-                                        // top: '0',                // Adjust the position as necessary
-                                        // left: '0',               // Adjust the position as necessary
-                                        zIndex: 999,             // Ensure it overlaps other content
-                                        backgroundColor: 'white',
-                                        border: '1px solid #ccc',  // Optional: Adds a border for better visibility
-                                        width: '133px',            // You can adjust the width as needed
-                                        maxHeight: '300px',       // Optional: Limits the height if you have many suggestions
-                                        overflowY: 'auto',       // Allows scrolling when there are many suggestions
-                                    }}>
-                                        {suggestions[key].map((suggestion, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="suggestion-item"
-                                                style={{
-                                                    color: 'black',      // Text color
-                                                    padding: '10px',      // Adds space inside each item
-                                                    cursor: 'pointer',   // Shows a pointer cursor to indicate it is clickable
-                                                }}
-                                                onClick={() => handleSuggestionClick(key, suggestion)}
-                                            >
-                                                {suggestion}
-                                            </div>
-                                        ))}
-                                    </div>
+                                  <div
+                                  className="dropdown-container"
+                                  style={{
+                                    position: 'relative', // Keep parent container positioned relative
+                                  }}
+                                >
+                                  {/* <input
+                                    type="text"
+                                    style={{
+                                      width: '100%',
+                                      padding: '5px',
+                                      border: '1px solid #ccc',
+                                    }}
+                                  /> */}
+                                  <div
+                                    className="suggestion-list"
+                                    style={{
+                                      position: 'absolute',  // Absolute positioning to overlap below content
+                                      top: '100%',           // Position right below the input field
+                                      left: 0,               // Align with the left of the parent container
+                                      zIndex: 999,           // Ensure it overlaps other content
+                                      backgroundColor: 'white',
+                                      border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
+                                      width: '100%',           // Match the input width
+                                      maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
+                                      overflowY: 'auto',       // Enables scrolling if there are many suggestions
+                                    }}
+                                  >
+                                    {suggestions[key].map((suggestion, idx) => (
+                                      <div
+                                        key={idx}
+                                        className="suggestion-item"
+                                        style={{
+                                          color: 'black',
+                                          padding: '5px',
+                                          cursor: 'pointer',
+                                        }}
+                                        onClick={() => handleSuggestionClick(key, suggestion)}
+                                      >
+                                        {suggestion}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                                
 
                                 )}
-                                  {errors[key] && <p className="error-message">{errors[key]}</p>}
+                                {errors[key] && <p className="error-message">{errors[key]}</p>}
                             </label>
                         </div>
                     );
@@ -288,10 +325,14 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                 </div>
             </div>
             <div className="footer">
-                <button className="review-complete" onClick={() => {
-                    handleSubmit(); // Call handleSubmit first
-                    setConfirmMove(true); // Then set the confirm move state
-                }}>
+                <button
+                    className="review-complete"
+                    onClick={() => {
+                        if (handleSubmit()) {
+                            setConfirmMove(true);
+                        }
+                    }}
+                >
                     Review Complete
                 </button>
 
