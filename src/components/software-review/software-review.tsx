@@ -31,6 +31,8 @@ const SoftwareDashboard: React.FC = () => {
   );
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
   const [, setIsSidebarOpen] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({}); // Track errors for each input
+  
   const [isItemLoading, setIsItemLoading] = useState(false); // State to track loading for selected item
 
   const handleSelectItem = (item: string) => {
@@ -49,19 +51,38 @@ const SoftwareDashboard: React.FC = () => {
       }
     }
   };
+ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = () => {
-    const isAllInputsFilled = Object.values(inputs).every((val) => val !== "");
-    if (isAllInputsFilled) {
-      alert(`Submitted: ${Object.values(inputs).join(", ")}`);
-    } else {
-      alert("Please fill in all input fields before submitting.");
+    // Clear the error when the user starts typing
+    if (value !== "") {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     }
   };
+  
+  const handleSubmit = () => {
+    let newErrors: { [key: string]: string } = {};
+    let isAllInputsFilled = true;
+
+    // Check if all input fields are filled, otherwise add error messages
+    Object.keys(inputs).forEach((key) => {
+        if (inputs[key] === "") {
+            newErrors[key] = "This field is required."; // Mark as an error
+            isAllInputsFilled = false; // Set validation failure flag
+        }
+    });
+
+    if (isAllInputsFilled) {
+        setErrors({}); // Clear any existing errors if all inputs are filled
+        return true; // Return true when all inputs are filled (successful validation)
+    } else {
+        setErrors(newErrors); // Set error messages for the respective fields
+        return false; // Return false if validation fails
+    }
+};
+
+
 
   const handleConfirmMove = (proceed: boolean) => {
     if (proceed && confirmMove) {
@@ -109,11 +130,12 @@ const SoftwareDashboard: React.FC = () => {
             packages={packages}
             selectedItem={selectedItem}
             handleSelectItem={handleSelectItem}
-          />
+            errors={errors}   />
           <PackageDetails
-            inputs={inputs}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
+           inputs={inputs}
+           errors={errors} // Pass errors as props
+           handleInputChange={handleInputChange}
+           handleSubmit={handleSubmit}
           />
         </div>
         <div className="ticket-section">
