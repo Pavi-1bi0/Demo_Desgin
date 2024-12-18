@@ -4,10 +4,11 @@ import '../../styles/softwarepackage/package.scss';
 interface SoftwarePackageProps {
   packages: { name: string; lastReviewDate: string; lorem: string }[];
   selectedItem: string | null;
+  errors: { [key: string]: string }; // Accept errors as a prop
   handleSelectItem: (item: string) => void;
 }
 
-const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem }) => {
+const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem, errors, }) => {
   return (
     <div className="package-container">
       <div className="left-title">

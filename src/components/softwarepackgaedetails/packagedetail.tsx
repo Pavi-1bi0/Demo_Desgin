@@ -12,8 +12,9 @@ interface InputFieldsProps {
 
 const PackageDetails: React.FC<InputFieldsProps> = ({
     inputs,
+    errors,
     handleInputChange,
-    // handleSubmit,
+    handleSubmit,
 }) => {
     const [users] = useState<User[]>([
         {
@@ -24,27 +25,29 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
             email: 'alan.lee@nnlife.co.jp',
         },
     ]);
+
     const [confirmMove, setConfirmMove] = useState(false);
     const [suggestions, setSuggestions] = useState<{ [key: string]: string[] }>({});
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    // const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-    const validateInputs = () => {
-        const newErrors: { [key: string]: string } = {};
+    // const validateInputs = () => {
+    //     const newErrors: { [key: string]: string } = {};
 
-        // Check each input field for empty value
-        inputLabels.forEach((_, index) => {
-            const key = `input${index + 1}`;
-            if (!inputs[key]) {
-                newErrors[key] = 'This field is required';
-            }
-        });
+    //     // Check each input field for empty value
+    //     inputLabels.forEach((_, index) => {
+    //         const key = `input${index + 1}`;
+    //         if (!inputs[key]) {
+    //             newErrors[key] = 'This field is required';
+    //         }
+    //     });
 
-        // Update errors state if any validation fails
-        setErrors(newErrors);
 
-        // Return if the validation passed or failed
-        return Object.keys(newErrors).length === 0;
-    };
+    //     // Update errors state if any validation fails
+    //     setErrors(newErrors);
+
+    //     // Return if the validation passed or failed
+    //     return Object.keys(newErrors).length === 0;
+    // };
 
     const suggestionsData: { [key: string]: string[] } = {
         input1: ['Alan Lee', 'Alice Brown', 'Amelia Clarke'],
@@ -63,16 +66,19 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
         'IDN Owner',
         'AD Group Owner',
     ];
-    const handleSubmit = () => {
-        if (validateInputs()) {
-            console.log('All fields are filled');
-            return true; // Validation successful
-        } else {
-            console.log('Please fill all fields');
-            return false; // Validation failed
-        }
+    // const handleSubmit = () => {
+    //     if (validateInputs()) {
+    //         console.log('All fields are filled');
+    //         return true; // Validation successful
+    //     } else {
+    //         console.log('Please fill all fields');
+    //         return false; // Validation failed
+    //     }
+    // };
+    const handleInputAndFilter = (key: string, value: string) => {
+        handleInputChange({ target: { name: key, value } } as React.ChangeEvent<HTMLInputElement>);
+        filterSuggestions(key, value);
     };
-
     const handleConfirmMove = (move: boolean) => {
         setConfirmMove(false);
         if (move) {
@@ -95,15 +101,9 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
     };
 
     const handleSuggestionClick = (key: string, value: string) => {
-        handleInputChange({
-            target: {
-                name: key,
-                value,
-            },
-        } as React.ChangeEvent<HTMLInputElement>);
+        handleInputChange({ target: { name: key, value } } as React.ChangeEvent<HTMLInputElement>);
         setSuggestions((prev) => ({ ...prev, [key]: [] }));
     };
-
     const filterSuggestions = (key: string, value: string) => {
         const filtered = (suggestionsData[key] || []).filter((s) =>
             s.toLowerCase().includes(value.toLowerCase())
@@ -135,8 +135,8 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     name={key}
                                     value={inputs[key]}
                                     onChange={(e) => {
-                                        handleInputChange(e);
-                                        filterSuggestions(key, e.target.value);
+                                        handleInputChange(e); // Update input and clear errors
+                                        filterSuggestions(key, e.target.value); // Additional logic for suggestions
                                     }}
                                     onFocus={() => handleInputFocus(key)}
                                     onBlur={() => handleInputBlur(key)}
@@ -230,13 +230,13 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                     onBlur={() => handleInputBlur(key)}
                                 />
                                 {suggestions[key] && suggestions[key].length > 0 && (
-                                  <div
-                                  className="dropdown-container"
-                                  style={{
-                                    position: 'relative', // Keep parent container positioned relative
-                                  }}
-                                >
-                                  {/* <input
+                                    <div
+                                        className="dropdown-container"
+                                        style={{
+                                            position: 'relative', // Keep parent container positioned relative
+                                        }}
+                                    >
+                                        {/* <input
                                     type="text"
                                     style={{
                                       width: '100%',
@@ -244,37 +244,37 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                                       border: '1px solid #ccc',
                                     }}
                                   /> */}
-                                  <div
-                                    className="suggestion-list"
-                                    style={{
-                                      position: 'absolute',  // Absolute positioning to overlap below content
-                                      top: '100%',           // Position right below the input field
-                                      left: 0,               // Align with the left of the parent container
-                                      zIndex: 999,           // Ensure it overlaps other content
-                                      backgroundColor: 'white',
-                                      border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
-                                      width: '100%',           // Match the input width
-                                      maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
-                                      overflowY: 'auto',       // Enables scrolling if there are many suggestions
-                                    }}
-                                  >
-                                    {suggestions[key].map((suggestion, idx) => (
-                                      <div
-                                        key={idx}
-                                        className="suggestion-item"
-                                        style={{
-                                          color: 'black',
-                                          padding: '5px',
-                                          cursor: 'pointer',
-                                        }}
-                                        onClick={() => handleSuggestionClick(key, suggestion)}
-                                      >
-                                        {suggestion}
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                                
+                                        <div
+                                            className="suggestion-list"
+                                            style={{
+                                                position: 'absolute',  // Absolute positioning to overlap below content
+                                                top: '100%',           // Position right below the input field
+                                                left: 0,               // Align with the left of the parent container
+                                                zIndex: 999,           // Ensure it overlaps other content
+                                                backgroundColor: 'white',
+                                                border: '1px solid #ccc', // Optional: Adds a border to the suggestion list
+                                                width: '100%',           // Match the input width
+                                                maxHeight: '300px',      // Optional: Limit the height if you have many suggestions
+                                                overflowY: 'auto',       // Enables scrolling if there are many suggestions
+                                            }}
+                                        >
+                                            {suggestions[key].map((suggestion, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="suggestion-item"
+                                                    style={{
+                                                        color: 'black',
+                                                        padding: '5px',
+                                                        cursor: 'pointer',
+                                                    }}
+                                                    onClick={() => handleSuggestionClick(key, suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
 
                                 )}
                                 {errors[key] && <p className="error-message">{errors[key]}</p>}
@@ -328,13 +328,19 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
                 <button
                     className="review-complete"
                     onClick={() => {
-                        if (handleSubmit()) {
-                            setConfirmMove(true);
+                        // Call handleSubmit and check if validation passes
+                        const isFormValid = handleSubmit();
+
+                        // Show the confirmation popup only if the form is valid
+                        if (isFormValid) {
+                            setConfirmMove(true); // Move to the next step after successful validation
                         }
                     }}
                 >
                     Review Complete
                 </button>
+
+
 
 
                 {confirmMove && (

@@ -10,18 +10,16 @@ const Demo: React.FC = () => {
       {}
     )
   );
+  const [errors, setErrors] = useState<{ [key: string]: string }>({}); // Track errors for each input
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
 
   const items = ["Item 1", "Item 2", "Item 3", "Item 4"];
 
   const handleSelectItem = (item: string) => {
-    // Check if any input is filled before switching items
     const isAnyInputFilled = Object.values(inputs).some((val) => val !== "");
     if (selectedItem !== item && isAnyInputFilled) {
-      // If inputs are filled and a different item is selected, ask for confirmation
       setConfirmMove(item);
     } else {
-      // If the same item is selected, do not reset the inputs
       if (selectedItem !== item) {
         setSelectedItem(item);
       }
@@ -29,15 +27,32 @@ const Demo: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
+
+    // Clear the error when the user starts typing
+    if (value !== "") {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    }
   };
 
   const handleSubmit = () => {
-    const isAllInputsFilled = Object.values(inputs).every((val) => val !== "");
+    let newErrors: { [key: string]: string } = {};
+    let isAllInputsFilled = true;
+
+    // Check if all input fields are filled, otherwise add error messages
+    Object.keys(inputs).forEach((key) => {
+      if (inputs[key] === "") {
+        newErrors[key] = "This field is required.";
+        isAllInputsFilled = false;
+      }
+    });
+
     if (isAllInputsFilled) {
+      setErrors({});
       alert(`Submitted: ${Object.values(inputs).join(", ")}`);
     } else {
-      alert("Please fill in all input fields before submitting.");
+      setErrors(newErrors); // Set error messages for the respective fields
     }
   };
 
@@ -68,6 +83,7 @@ const Demo: React.FC = () => {
       {/* InputFields Component */}
       <InputFields
         inputs={inputs}
+        errors={errors} // Pass errors as props
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
       />
@@ -86,6 +102,11 @@ const Demo: React.FC = () => {
           <button onClick={() => handleConfirmMove(false)}>Stay</button>
         </div>
       )}
+
+      {/* Review Button */}
+      <button onClick={handleSubmit} style={{ marginTop: "20px" }}>
+        Review
+      </button>
     </div>
   );
 };
