@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import SoftwarePackage from "../softwarepackage/softwarepackage";
 import PackageDetails from "../softwarepackgaedetails/packagedetail";
 import Navbar from "../navbar/navbar";
@@ -7,6 +7,14 @@ import "../../styles/software-review/software-review.scss";
 import TicketHistory from "../tickethistory/tickethistory";
 import Tickectdetails from "../ticketdetails/tickectdetails";
 import CloseIcon from "@mui/icons-material/Close";
+import Sidebar from "../sidebar/sidebar";
+
+
+
+export const ThemeContext = createContext({
+  isDarkMode: false,
+  toggleTheme: () => {} // Function to toggle the theme
+});
 
 const SoftwareDashboard: React.FC = () => {
   const [packages] = useState([
@@ -16,12 +24,14 @@ const SoftwareDashboard: React.FC = () => {
     { name: "IBM Operational Decision Manager - Rule", lastReviewDate: "6/29/2023", lorem: "Description for IBM Operational Decision Manager" },
   ]);
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [selectedCard, setSelectedCard] = useState<{
     name: string;
     lastReviewDate: string;
     lorem: string;
   } | null>(null);
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   const [inputs, setInputs] = useState(
     Array.from({ length: 6 }, (_, i) => ({ [`input${i + 1}`]: "" })).reduce(
@@ -30,7 +40,8 @@ const SoftwareDashboard: React.FC = () => {
     )
   );
   const [confirmMove, setConfirmMove] = useState<string | null>(null);
-  const [, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({}); // Track errors for each input
   
   const [isItemLoading, setIsItemLoading] = useState(false); // State to track loading for selected item
@@ -110,9 +121,11 @@ const SoftwareDashboard: React.FC = () => {
   };
 
   return (
-    <div className="software-review-page">
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      <div className={`software-review-page ${isDarkMode ? "dark-mode" : ""}`}>
       <Navbar toggleSidebar={toggleSidebar} />
-
+    <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}isDarkMode={isDarkMode}
+ />
       <div className="software-review-center">
         <header className="header">
           <h1>Client Software Package Review Center</h1>
@@ -130,7 +143,9 @@ const SoftwareDashboard: React.FC = () => {
             packages={packages}
             selectedItem={selectedItem}
             handleSelectItem={handleSelectItem}
-            errors={errors}   />
+            errors={errors}  
+           isDarkMode={isDarkMode} 
+            />
           <PackageDetails
            inputs={inputs}
            errors={errors} // Pass errors as props
@@ -208,6 +223,8 @@ const SoftwareDashboard: React.FC = () => {
         )}
       </div>
     </div>
+    </ThemeContext.Provider>
+
   );
 };
 

@@ -29,6 +29,11 @@ body {
   min-width: 320px;
   /* min-height: 100vh; */
 }
+/* src/styles/global.scss or src/styles.scss */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
 
 h1 {
   font-size: 3.2em;

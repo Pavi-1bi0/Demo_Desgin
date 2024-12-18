@@ -1,18 +1,35 @@
 import React, { useState } from 'react';
 import '../../styles/Login/login.scss';
-// import img from '../../assets/Login/images.jpeg';
-
 import { useNavigate } from 'react-router-dom';
+
 const Login: React.FC = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [email, setEmail] = useState(''); // State for email input
+    const [error, setError] = useState(''); // State for validation error
     const navigate = useNavigate(); // Initialize the useNavigate hook
+
     // Toggle function for dark mode
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
     };
+
+    // Email validation function
+    const validateEmail = (inputEmail: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for valid email
+        return emailRegex.test(inputEmail);
+    };
+
+    // Handle Next Button Click
     const handleNext = () => {
-        navigate('/dashboard'); // Redirect to the dashboard page
-      };
+        if (email.trim() === '') {
+            setError('Email is required'); // Empty email error
+        } else if (!validateEmail(email)) {
+            setError('Invalid email format'); // Invalid email error
+        } else {
+            setError(''); // Clear error
+            navigate('/dashboard'); // Redirect to the dashboard page
+        }
+    };
 
     return (
         <div className="login-page">
@@ -20,7 +37,6 @@ const Login: React.FC = () => {
             <div className={`login-form ${isDarkMode ? 'dark-mode' : ''}`}>
                 <div className='header'>
                     <h4 className="logo">SS Login</h4>
-
 
                     {/* Toggle Switch */}
                     <div className="dark-mode-toggle">
@@ -32,13 +48,20 @@ const Login: React.FC = () => {
                             />
                             <span className="slider"></span>
                         </label>
-                        {/* <span>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span> */}
                     </div>
                 </div>
                 <form>
                     <div className="form-group">
                         <label htmlFor="email" className='email'>Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email" />
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} // Capture input
+                        />
+                        {/* Display error message */}
+                        {error && <div className="error-message">{error}</div>}
                     </div>
                     <button type="button" className="btn-next" onClick={handleNext}>
                         Next

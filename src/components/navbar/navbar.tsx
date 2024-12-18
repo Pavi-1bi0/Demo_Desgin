@@ -1,49 +1,52 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "../../styles/navbar/navbar.scss";
 import Divider from "@mui/material/Divider";
-// import img from "../../../assets/Dashboard/navbar/images.jpeg";
-// import SearchIcon from "@mui/icons-material/Search";
-// import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger icon
 import { IconButton } from "@mui/material";
 import Sidebar from "../sidebar/sidebar";
 import img from '../../assets/dashboard/img.jpg';
-
+import { ThemeContext } from "../software-review/software-review";
 
 interface navbarProps {
   toggleSidebar: () => void;
 }
 
-const Navbar: React.FC<navbarProps> = ({  }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const Navbar: React.FC<navbarProps> = ({ }) => {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext); // Destructure toggleTheme
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+  const toggleDarkMode = () => {
+    toggleTheme();  // Use the context's toggle function to switch themes
+  };
 
   return (
-    <div className="navbar">
+    <div className={`navbar ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Sidebar Toggle Button */}
       <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} aria-label="toggle sidebar" className="toggle-icon">
         <MenuIcon />
       </IconButton>
 
       {/* Sidebar Component */}
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isDarkMode={isDarkMode} />
 
       {/* Greeting */}
       <div className="navbar__greeting">
         <h4>Software Development Tool</h4>
-        </div>
+      </div>
 
       {/* Icons Section */}
       <div className="navbar__icons">
-        {/* Search Icon */}
-        {/* <IconButton aria-label="search">
-          <SearchIcon />
-        </IconButton> */}
-
-        {/* Notification Icon */}
-        {/* <IconButton aria-label="notifications">
-          <NotificationAddIcon />
-        </IconButton> */}
-
+        {/* Dark Mode Toggle */}
+        <div className="dark-mode-toggle">
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
         {/* Divider */}
         <Divider orientation="vertical" flexItem className="divider" />
 

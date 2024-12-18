@@ -1,34 +1,87 @@
 @import '../scss/abstract/variables';
 @import '../scss/abstract/break_points';
 
+// Light Mode Navbar Styles
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   background-color: #fff;
+  color: #333;
   height: 50px;
   border-bottom: 1px solid #eee;
-  // box-shadow: $default-shadow;
   position: fixed;
   z-index: 1000;
   width: calc(100% - 231px);
-  /* Automatically adjusts the width */
   margin-left: 231px;
   margin-top: -7px;
+  &.dark-mode {
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+  }
 
+  .dark-mode-toggle {
+    // margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 34px;
+        height: 20px;
+        margin-right: 10px;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: 14px;
+                width: 14px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: 0.4s;
+                border-radius: 50%;
+            }
+        }
+
+        input:checked+.slider {
+            background-color: $btn-color;
+        }
+
+        input:checked+.slider::before {
+            transform: translateX(14px);
+        }
+    }
+}
+  // Sidebar open/closed states
   .sidebar--open {
     display: none;
   }
-
   .toggle-icon {
     display: none;
   }
-
   .sidebar--closed {
     display: none;
   }
-
 
   &__greeting {
     position: relative;
@@ -39,11 +92,7 @@
       color: #ea650d;
       text-wrap: wrap;
       position: absolute;
-      /* margin-left: -15rem; */
       margin-top: -25px;
-      /* width: 37%; */
-      /* margin-right: 2rem; */
-      padding: 1px;
       display: none;
     }
   }
@@ -52,10 +101,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* Icons stay on the right */
     gap: 15px;
     margin-right: 35px;
-    /* No negative margin */
     cursor: pointer;
 
     .divider {
@@ -70,7 +117,6 @@
       height: 30px;
       border-radius: 50%;
       overflow: hidden;
-      cursor: pointer;
 
       .navbar__avatar-img {
         width: 100%;
@@ -78,19 +124,23 @@
         object-fit: cover;
       }
     }
-  }
 
+   
+  }
 }
 
-@media screen and (max-width:$screen-md-min) {
+
+
+// Media Queries
+@media screen and (max-width: $screen-md-min) {
   .navbar {
     margin-left: 0;
     width: 100%;
 
     &__greeting {
-     
       margin-right: 27rem;
       margin-top: 13px;
+
       h4 {
         display: block;
         text-align: justify;
@@ -114,11 +164,9 @@
       margin-top: 28rem;
       padding: 0;
 
-      &__footer
-    {
-      margin-top: 6rem;
-    }
+      &__footer {
+        margin-top: 6rem;
+      }
     }
   }
-
 }

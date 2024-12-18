@@ -13,10 +13,11 @@ import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
+  isDarkMode: boolean;
   setIsSidebarOpen: (isOpen: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen ,  isDarkMode,}) => {
   const location = useLocation(); // Get the current route
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -54,8 +55,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
   return (
     <div
       ref={sidebarRef}
-      className={`sidebar ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"}`}
+      className={`sidebar ${
+        isSidebarOpen ? "sidebar--open" : "sidebar--closed"
+      } ${isDarkMode ? "dark-mode" : ""}`}
     >
+  
      <div className="sidebar__greeting">
         <h4>Software Development Tool</h4></div>
 

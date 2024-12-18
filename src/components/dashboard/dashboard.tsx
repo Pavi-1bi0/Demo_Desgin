@@ -6,6 +6,8 @@ import SoftwareDashboard from "../software-review/software-review";
 
 const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -17,7 +19,8 @@ const Dashboard: React.FC = () => {
       <Navbar toggleSidebar={toggleSidebar} />
       
       {/* Sidebar component */}
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}isDarkMode={isDarkMode}
+ />
 
       {/* Main content */}
       <div className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
