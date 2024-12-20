@@ -223,5 +223,9 @@
 @media screen and (max-width:600px) {
     .login-page{
         flex-direction: column;
+
+        .illustration{
+            display: none;
+        }
     }
 }
