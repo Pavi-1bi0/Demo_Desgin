@@ -6,7 +6,7 @@ import SoftwareDashboard from "../software-review/software-review";
 
 const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isDarkMode] = React.useState(false);
 
 
   const toggleSidebar = () => {

@@ -13,7 +13,7 @@ import Sidebar from "../sidebar/sidebar";
 
 export const ThemeContext = createContext({
   isDarkMode: false,
-  toggleTheme: () => {} // Function to toggle the theme
+  toggleTheme: () => { } // Function to toggle the theme
 });
 
 const SoftwareDashboard: React.FC = () => {
@@ -43,7 +43,7 @@ const SoftwareDashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({}); // Track errors for each input
-  
+
   const [isItemLoading, setIsItemLoading] = useState(false); // State to track loading for selected item
 
   const handleSelectItem = (item: string) => {
@@ -62,7 +62,7 @@ const SoftwareDashboard: React.FC = () => {
       }
     }
   };
- const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
 
@@ -71,27 +71,27 @@ const SoftwareDashboard: React.FC = () => {
       setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     }
   };
-  
+
   const handleSubmit = () => {
     let newErrors: { [key: string]: string } = {};
     let isAllInputsFilled = true;
 
     // Check if all input fields are filled, otherwise add error messages
     Object.keys(inputs).forEach((key) => {
-        if (inputs[key] === "") {
-            newErrors[key] = "This field is required."; // Mark as an error
-            isAllInputsFilled = false; // Set validation failure flag
-        }
+      if (inputs[key] === "") {
+        newErrors[key] = "This field is required."; // Mark as an error
+        isAllInputsFilled = false; // Set validation failure flag
+      }
     });
 
     if (isAllInputsFilled) {
-        setErrors({}); // Clear any existing errors if all inputs are filled
-        return true; // Return true when all inputs are filled (successful validation)
+      setErrors({}); // Clear any existing errors if all inputs are filled
+      return true; // Return true when all inputs are filled (successful validation)
     } else {
-        setErrors(newErrors); // Set error messages for the respective fields
-        return false; // Return false if validation fails
+      setErrors(newErrors); // Set error messages for the respective fields
+      return false; // Return false if validation fails
     }
-};
+  };
 
 
 
@@ -123,106 +123,113 @@ const SoftwareDashboard: React.FC = () => {
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       <div className={`software-review-page ${isDarkMode ? "dark-mode" : ""}`}>
-      <Navbar toggleSidebar={toggleSidebar} />
-    <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}isDarkMode={isDarkMode}
- />
-      <div className="software-review-center">
+        <Navbar toggleSidebar={toggleSidebar} />
+        <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isDarkMode={isDarkMode}
+        />
+        <div className={isDarkMode ? 'software-review-center dark-mode' : 'software-review-center'}>
         <header className="header">
-          <h1>Client Software Package Review Center</h1>
-          <div className="sub-header">
-            <p>
-              Owner: <strong>Alan Lee</strong>
-            </p>
-            <p>
-              # of Software: <strong>4</strong>
-            </p>
-          </div>
-        </header>
-        <div className="package-section">
-          <SoftwarePackage
-            packages={packages}
-            selectedItem={selectedItem}
-            handleSelectItem={handleSelectItem}
-            errors={errors}  
-           isDarkMode={isDarkMode} 
+            <h1>Client Software Package Review Center</h1>
+            <div className="sub-header">
+              <p>
+                Owner: <strong>Alan Lee</strong>
+              </p>
+              <p>
+                # of Software: <strong>4</strong>
+              </p>
+            </div>
+          </header>
+          <div className="package-section">
+            <SoftwarePackage
+              packages={packages}
+              selectedItem={selectedItem}
+              handleSelectItem={handleSelectItem}
+              errors={errors}
+              isDarkMode={isDarkMode}
             />
-          <PackageDetails
-           inputs={inputs}
-           errors={errors} // Pass errors as props
-           handleInputChange={handleInputChange}
-           handleSubmit={handleSubmit}
-          />
-        </div>
-        <div className="ticket-section">
-          <TicketHistory selectedCard={selectedCard} isItemLoading={isItemLoading} />
-          <Tickectdetails />
-        </div>
+            <PackageDetails
+              inputs={inputs}
+              errors={errors} // Pass errors as props
+              handleInputChange={handleInputChange}
+              handleSubmit={handleSubmit}
+              isDarkMode={isDarkMode}
+              />
+          </div>
+          <div className="ticket-section">
+            <TicketHistory selectedCard={selectedCard} 
+            isItemLoading={isItemLoading}
+            isDarkMode={isDarkMode}
+            
+            />
+            <Tickectdetails 
+           isDarkMode={isDarkMode}
+            />
+          </div>
 
 
-        {confirmMove && (
-          <div
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "white",
-              padding: "20px",
-              borderRadius: "8px",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-              zIndex: 1000,
-              maxWidth: "400px",
-              width: "100%",
-            }}
-          >
-            <button
-              onClick={handleClose}
+          {confirmMove && (
+            <div
               style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "0",
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                zIndex: 1000,
+                maxWidth: "400px",
+                width: "100%",
               }}
             >
-              <CloseIcon style={{ fontSize: "24px", color: "#dc3545" }} />
-            </button>
-            <h3>May we move to the next item or stay here?</h3>
-            <div style={{ marginTop: "15px", textAlign: "center" }}>
               <button
-                onClick={() => handleConfirmMove(true)}
+                onClick={handleClose}
                 style={{
-                  marginRight: "10px",
-                  padding: "10px 20px",
-                  backgroundColor: "#007bff",
-                  color: "white",
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  background: "none",
                   border: "none",
-                  borderRadius: "4px",
                   cursor: "pointer",
+                  padding: "0",
                 }}
               >
-                Move
+                <CloseIcon style={{ fontSize: "24px", color: "#dc3545" }} />
               </button>
-              <button
-                onClick={() => handleConfirmMove(false)}
-                style={{
-                  padding: "10px 20px",
-                  backgroundColor: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Stay
-              </button>
+              <h3>May we move to the next item or stay here?</h3>
+              <div style={{ marginTop: "15px", textAlign: "center" }}>
+                <button
+                  onClick={() => handleConfirmMove(true)}
+                  style={{
+                    marginRight: "10px",
+                    padding: "10px 20px",
+                    backgroundColor: "#007bff",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Move
+                </button>
+                <button
+                  onClick={() => handleConfirmMove(false)}
+                  style={{
+                    padding: "10px 20px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Stay
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
     </ThemeContext.Provider>
 
   );

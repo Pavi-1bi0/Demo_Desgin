@@ -1,4 +1,4 @@
-@import '../scss/abstract/variables';
+@use '../scss/abstract/variables' as variables;
 
 .login-page {
     display: flex;
@@ -34,7 +34,7 @@
             }
 
             .btn-next {
-                background-color: $btn-color;
+                background-color: variables.$btn-color;
                 color: #ffffff;
                 border: 1px solid #ffffff;
             }
@@ -92,13 +92,14 @@
                     border: 1px solid #ccc;
                     background-color: white;
                     border-radius: 5px;
+                    color: black;
                 }
             }
 
             .btn-next {
                 width: 100%;
                 padding: 10px;
-                background-color: $btn-color;
+                background-color: variables.$btn-color;
                 color: white;
                 border: none;
                 border-radius: 5px;
@@ -189,7 +190,8 @@
                 }
 
                 input:checked+.slider {
-                    background-color: $btn-color;
+                    background-color: variables.$btn-color;
+
                 }
 
                 input:checked+.slider::before {
@@ -224,6 +226,12 @@
     .login-page{
         flex-direction: column;
 
+       
+    }
+}
+
+@media screen and (max-width: 768px){
+    .login-page{
         .illustration{
             display: none;
         }

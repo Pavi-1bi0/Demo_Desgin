@@ -35,8 +35,8 @@ const Login: React.FC = () => {
         <div className="login-page">
             {/* Left Section */}
             <div className={`login-form ${isDarkMode ? 'dark-mode' : ''}`}>
-                <div className='header'>
-                    <h4 className="logo">SS Login</h4>
+                <div className="header">
+                    <h4 className="logo">SSO Login</h4>
 
                     {/* Toggle Switch */}
                     <div className="dark-mode-toggle">
@@ -52,13 +52,18 @@ const Login: React.FC = () => {
                 </div>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="email" className='email'>Email Address</label>
+                        <label htmlFor="email" className="email">
+                            Email Address
+                        </label>
                         <input
                             type="email"
                             id="email"
                             placeholder="Enter your email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)} // Capture input
+                            onChange={(e) => {
+                                setEmail(e.target.value); // Update email state
+                                setError(''); // Clear the error when the user starts typing
+                            }}
                         />
                         {/* Display error message */}
                         {error && <div className="error-message">{error}</div>}

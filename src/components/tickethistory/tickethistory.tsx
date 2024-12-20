@@ -6,9 +6,9 @@ import TicketHistoryProps from "../../@types/interface/Tickethistory/Tickethisto
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const TicketHistory: React.FC<TicketHistoryProps> = ({ selectedCard, isItemLoading }) => {
+const TicketHistory: React.FC<TicketHistoryProps> = ({ selectedCard, isItemLoading,isDarkMode }) => {
   return (
-    <div className="tickect-page">
+    <div className={isDarkMode ? "tickect-page dark-mode" : "tickect-page"}>
       <div className="header">
         <h2>ServiceNow Ticket History</h2>
       </div>

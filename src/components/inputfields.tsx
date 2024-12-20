@@ -11,7 +11,7 @@ const InputFields: React.FC<InputFieldsProps> = ({
   inputs,
   errors,
   handleInputChange,
-  handleSubmit,
+  // handleSubmit,
 }) => {
   return (
     <div>

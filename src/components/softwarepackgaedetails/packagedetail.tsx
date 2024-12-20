@@ -7,7 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 interface InputFieldsProps {
     inputs: { [key: string]: string };
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: () => void;
+    handleSubmit: () => boolean;
+    errors: { [key: string]: string }; // Accept errors as a prop
+    isDarkMode: boolean;
 }
 
 const PackageDetails: React.FC<InputFieldsProps> = ({
@@ -15,6 +17,7 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
     errors,
     handleInputChange,
     handleSubmit,
+    isDarkMode
 }) => {
     const [users] = useState<User[]>([
         {
@@ -75,10 +78,10 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
     //         return false; // Validation failed
     //     }
     // };
-    const handleInputAndFilter = (key: string, value: string) => {
-        handleInputChange({ target: { name: key, value } } as React.ChangeEvent<HTMLInputElement>);
-        filterSuggestions(key, value);
-    };
+    // const handleInputAndFilter = (key: string, value: string) => {
+    //     handleInputChange({ target: { name: key, value } } as React.ChangeEvent<HTMLInputElement>);
+    //     filterSuggestions(key, value);
+    // };
     const handleConfirmMove = (move: boolean) => {
         setConfirmMove(false);
         if (move) {
@@ -112,12 +115,13 @@ const PackageDetails: React.FC<InputFieldsProps> = ({
     };
 
     return (
-        <div className="software-package-details">
+        <div className={isDarkMode ? 'software-package-details dark-mode' : 'software-package-details'}>
             <div className="right-title">
                 <h3>Client Software Package Details</h3>
             </div>
             <div className="package-detail">
                 {inputLabels.slice(0, 3).map((label, index) => {
+
                     const key = `input${index + 1}`;
                     return (
                         <div className="detail-item" key={key}>

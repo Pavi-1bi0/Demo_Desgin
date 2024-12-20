@@ -6,11 +6,13 @@ interface SoftwarePackageProps {
   selectedItem: string | null;
   errors: { [key: string]: string }; // Accept errors as a prop
   handleSelectItem: (item: string) => void;
+  isDarkMode:boolean;
+  
 }
 
-const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem, errors, }) => {
+const SoftwarePackage: React.FC<SoftwarePackageProps> = ({ packages, selectedItem, handleSelectItem, isDarkMode }) => {
   return (
-    <div className="package-container">
+    <div className={isDarkMode?"package-container dark-mode" : "package-container"}>
       <div className="left-title">
         <h3>Client Software Package</h3>
       </div>

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "../../styles/sidebar/sidebar.scss";
 // import logo from "../../../assets/Dashboard/navbar/Logo.png";
 import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
-import FaxOutlinedIcon from "@mui/icons-material/FaxOutlined";
+// import FaxOutlinedIcon from "@mui/icons-material/FaxOutlined";
 // import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 // import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 // import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen ,  is
 
   const menuItems = [
     { path: "/dashboard", label: "Service Now", icon: <SaveAsOutlinedIcon /> },
-    { path: "/payslip", label: "Tools", icon: <FaxOutlinedIcon /> },
+    // { path: "/payslip", label: "Tools", icon: <FaxOutlinedIcon /> },
     // { path: "/idcard", label: "ID card", icon: <BadgeOutlinedIcon /> },
     // { path: "/attendence", label: "Attendance", icon: <CalendarMonthOutlinedIcon /> },
     // { path: "/request-leave", label: "Leave Request", icon: <NoteAltOutlinedIcon /> },
@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen ,  is
         ))}
       </div>
       <hr className="sidebar__divider" />
-      <div className="sidebar__footer">
+      <div className={ isDarkMode ?"sidebar__footer dark-mode " : "sidebar__foote"}>
         <div className="sidebar__item">
           <i className="sidebar__icon">
             <SettingsOutlinedIcon />

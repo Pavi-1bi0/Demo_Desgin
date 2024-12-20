@@ -1,9 +1,9 @@
-@import '../scss/abstract/variables';
-@import '../scss/abstract/break_points';
+@use '../scss/abstract/variables' as variables;
+@use '../scss/abstract/break_points'as breakpoints;
 
 .software-review-center {
     background-color: white;
-    color: $primary-color;
+    color: variables.$primary-color;
     padding: 20px;
     border-radius: 10px;
     width: calc(100% - 231px); /* Automatically adjusts the width */
@@ -12,6 +12,20 @@
     &.dark-mode {
         background-color: black; /* Set to black for dark mode */
         color: #f5f5f5; /* Light text color */
+
+        .header{
+            .sub-header{
+                p{
+                    color: white;
+
+                    strong{
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        
     }
     .header {
         text-align: center;
@@ -40,7 +54,7 @@
                 margin-top: -1px;
                 strong {
                     font-weight: 500;
-                    color: $default-colr;
+                    color: variables.$default-colr;
                 }
                 input {
                     width: 20px;
@@ -72,29 +86,7 @@
     }
 }
 
-.software-review-page.dark-mode {
-    background-color: black; /* Set to black */
-    color: white; /* Light text color */
-}
-
-.software-review-center.dark-mode {
-    background-color: black; /* Set to black */
-}
-
-.software-review-page.dark-mode .header {
-    background-color: #1c1c1c; /* Optional: Darker header for distinction */
-}
-
-.software-review-page.dark-mode .navbar {
-    background-color: #333; /* Optional: Dark navbar */
-}
-
-.software-review-page.dark-mode .navbar__greeting {
-    color: white; /* Light text color */
-}
-
-
-@media only screen and (max-width:$screen-xl-min){
+@media only screen and (max-width:breakpoints.$screen-xl-min){
    .software-review-center{
     .package-section{
         flex-direction: column;
@@ -106,14 +98,8 @@
 
 }
 
-@media screen and (max-width:$screen-lg-min){
-    .software-review-center{
-        .package-section{
 
-        }
-    }
-}
-@media screen and (max-width:$screen-md-min) {
+@media screen and (max-width:breakpoints.$screen-md-min) {
     .software-review-center{
         margin-left: 25px;
         width: 68%;
@@ -134,7 +120,7 @@
     }
 }
 
-@media screen and (max-width:$screen-sm){
+@media screen and (max-width:breakpoints.$screen-sm){
     .software-review-center{
         .header{
             h1{

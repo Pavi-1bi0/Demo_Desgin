@@ -1,11 +1,63 @@
-@import '../../styles/scss/abstract/variables';
-@import '../../styles/scss/abstract/break_points';
+@use '../../styles/scss/abstract/variables' as variables;
+@use '../../styles/scss/abstract/break_points' as breakpoints;
 
 .package-container {
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   width: 50%;
+
+  &.dark-mode {
+    .software-package {
+      border: 2px solid white;
+      .package-item {
+        background-color: black;
+        color: white;
+
+        .package-number {
+          color: white;
+        }
+
+        .package-details {
+          .package-name {
+            color: white;
+          }
+          .details-row{
+            .review-date{
+              color: white;
+            }
+            .package-description{
+              color: white;
+            }
+          }
+          
+        }
+
+        &.selected {
+          background-color: currentColor;
+        
+            .package-number{
+              color: black;
+            }
+          .package-details{
+            .package-name{
+              color: black;
+            }
+            .details-row{
+              .review-date
+              {
+                color: black;
+              }
+              .package-description{
+                color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 
   .left-title {
     position: relative;
@@ -24,7 +76,7 @@
 
   .software-package {
     border-radius: 5px;
-    color: $secondary-color;
+    color: variables.$secondary-color;
     border: 2px solid black;
     width: 100%;
     max-height: 380px;
@@ -63,7 +115,7 @@
 
     .package-item {
       padding: 6px;
-      border-bottom: 2px solid $secondary-color;
+      border-bottom: 2px solid variables.$secondary-color;
       border-radius: 5px;
       display: flex;
       align-items: flex-start;
@@ -76,19 +128,19 @@
 
       &.selected {
         background-color: lightgray;
-        color: $secondary-color;
-        border: 1px solid $default-colr;
+        color: variables.$secondary-color;
+        border: 1px solid variables.$default-colr;
         transform: translateY(-2px);
         // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
         button {
-          background-color: $btn-color;
+          background-color:variables.$btn-color;
           /* Light red when selected */
         }
       }
 
       .package-number {
-        color: $default-colr;
+        color:variables.$default-colr;
         font-size: 15px;
         font-weight: 500;
         margin-left: 5px;
@@ -101,7 +153,7 @@
 
         .package-name {
           font-weight: bold;
-          color: $default-colr;
+          color:variables.$default-colr;
           margin-bottom: 5px;
         }
 
@@ -113,13 +165,13 @@
 
           .review-date {
             font-size: 13px;
-            color: $default-colr;
+            color:variables.$default-colr;
             white-space: nowrap;
           }
 
           .package-description {
             font-size: 12px;
-            color: $default-colr;
+            color:variables.$default-colr;
 
           }
         }
@@ -129,7 +181,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: $accent-color;
+        background-color:variables.$accent-color;
         color: black;
         border: none;
         border-radius: 15px;
@@ -139,7 +191,7 @@
         margin-top: 21px;
 
         .go-to-cmdb {
-          color: $default-colr;
+          color:variables.$default-colr;
           text-decoration: none;
           font-size: 10px;
         }
@@ -156,8 +208,8 @@
   }
 
   .add-package-btn {
-    background-color: $accent-color;
-    color: $default-colr;
+    background-color:variables.$accent-color;
+    color:variables.$default-colr;
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
@@ -170,22 +222,22 @@
   }
 }
 
-@media screen and (max-width: $screen-xl) {
-.package-container{
-  .software-package{
-    max-height: 450px;
+@media screen and (max-width: breakpoints.$screen-xl) {
+  .package-container {
+    .software-package {
+      max-height: 450px;
+    }
   }
 }
+
+@media screen and (max-width:breakpoints.$screen-xl-min) {
+  .package-container {
+    width: 95%;
+  }
 }
 
-@media screen and (max-width: $screen-xl-min) {
- .package-container{
-  width: 95%;
- }
-}
-
-@media screen and (max-width: $screen-md-min) {
-  .package-container{
+@media screen and (max-width:breakpoints.$screen-md-min) {
+  .package-container {
     width: 130%;
 
     .software-package {

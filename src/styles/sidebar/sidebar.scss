@@ -1,5 +1,5 @@
-@import '../scss/abstract/variables';
-@import '../scss/abstract/break_points';
+@use '../scss/abstract/variables' as variables;
+@use '../scss/abstract/break_points' as breakpoints;
 
 .sidebar {
   width: 200px;
@@ -27,7 +27,7 @@
   
       &:hover,
       &--active {
-        background-color: $btn-color;
+        background-color: variables.$btn-color;
         color: white !important;
   
         svg, i {
@@ -37,12 +37,12 @@
       }
     }
   
-    &__footer {
+    .sidebar__footer {
       .sidebar__item {
         color: white !important;
 
         &:hover {
-          background-color: $btn-color; /* Use your button color variable */
+          background-color:variables.$btn-color; /* Use your button color variable */
           color: white !important;
         }
       }
@@ -141,7 +141,7 @@
 
     &:hover,
     &--active {
-      background-color: $btn-color;
+      background-color:variables.$btn-color;
       color: white;
       border-radius: 30px;
       height: 20px;
@@ -162,7 +162,7 @@
   }
 }
 
-@media screen and (max-width: $screen-md-min) {
+@media screen and (max-width: breakpoints.$screen-md-min) {
   .sidebar--closed {
     display: none;
   }

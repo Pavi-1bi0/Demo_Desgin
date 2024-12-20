@@ -1,9 +1,16 @@
 import React from 'react';
 import '../../styles/tickectdetails/ticketdetails.scss';
 
-const Tickectdetails: React.FC = () => {
+
+
+interface serviceprops {
+  
+    isDarkMode: boolean;
+}
+
+const Tickectdetails: React.FC<serviceprops> = ({isDarkMode}) => {
   return (
-    <div className="servicenow-details">
+    <div className={ isDarkMode ?"servicenow-details dark-mode" : "servicenow-details"}>
       <h3 className="title">
         ServiceNow Ticket Details 
       </h3>
