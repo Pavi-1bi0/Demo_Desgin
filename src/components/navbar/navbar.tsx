@@ -16,7 +16,16 @@ const Navbar: React.FC<navbarProps> = ({ }) => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
   const toggleDarkMode = () => {
-    toggleTheme();  // Use the context's toggle function to switch themes
+    toggleTheme();
+    
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+      if (!isDarkMode) {
+        rootElement.classList.add('dark-mode');
+      } else {
+        rootElement.classList.remove('dark-mode');
+      }
+    }// Use the context's toggle function to switch themes
   };
 
   return (

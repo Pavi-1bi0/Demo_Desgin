@@ -47,6 +47,9 @@
                 .user{
                     color: white;
                 }
+                .css-1umw9bq-MuiSvgIcon-root{
+                    fill: white;
+                }
             }
         }
         .user-list-container{
@@ -66,7 +69,9 @@
                             p{
                                 color: white;
                             }
-
+                            .css-1umw9bq-MuiSvgIcon-root {
+                                fill: white;
+                            }
                         }
                     }
                 }
@@ -308,10 +313,9 @@
                 color:variables.$default-colr;
                 margin-top: 7px;
             }
-
-            // .checkbox {
-            //     background-color: blue;
-            // }
+            .css-1umw9bq-MuiSvgIcon-root{
+                fill: currentColor;
+            }
 
         }
 
@@ -400,6 +404,7 @@
 
                         .css-1umw9bq-MuiSvgIcon-root {
                             font-size: 15px;
+                            fill: currentColor;
                         }
                     }
 
