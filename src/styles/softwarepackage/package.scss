@@ -230,8 +230,33 @@
 
 @media screen and (max-width: breakpoints.$screen-xl) {
   .package-container {
+    .left-title{
+      margin-top: 15px;
+      h3{
+        font-size: 15px;
+      }
+    }
+    
     .software-package {
-      max-height: 450px;
+      max-height: 300px;
+      margin-top: 5px;
+
+      .package-item{
+        .package-details{
+
+          .package-name{
+            font-size: 12px;
+          }
+          .details-row{
+            .review-date{
+              font-size: 10px;
+            }
+            .package-description{
+              font-size: 10px;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
 
 .servicenow-details {
 
-  color:variables.$secondary-color;
+  color: variables.$secondary-color;
   // background-color: black;
   padding: 16px;
   // border: 2px solid lime;
@@ -29,7 +29,7 @@
   }
 
   .title {
-    color:variables.$default-colr;
+    color: variables.$default-colr;
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 16px;
@@ -63,7 +63,7 @@
       flex-direction: column;
 
       span {
-        color:variables.$default-colr;
+        color: variables.$default-colr;
         font-weight: bold;
         font-size: 0.9rem;
         text-wrap: normal;
@@ -81,8 +81,23 @@
   .servicenow-details {
     width: 50%;
 
+    .title {
+      font-size: 15px;
+    }
+
     .details-container {
       text-wrap: wrap;
+
+      .detail-row {
+
+        span {
+          font-size: 10px;
+        }
+
+        strong {
+          font-size: 10px;
+        }
+      }
     }
 
   }

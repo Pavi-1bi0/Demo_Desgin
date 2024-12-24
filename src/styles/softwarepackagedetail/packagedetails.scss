@@ -5,70 +5,83 @@
     margin: 30px 0;
     padding: 15px;
     border-radius: 5px;
-    color:variables.$secondary-color;
+    color: variables.$secondary-color;
     width: 50%;
     margin-top: 45px;
 
     &.dark-mode {
         background-color: black !important;
         color: #f5f5f5 !important;
-        .package-detail{
-            .detail-item{
-                span{
+
+        .package-detail {
+            .detail-item {
+                span {
                     color: white;
                 }
-                strong{
+
+                strong {
                     color: white;
                 }
             }
-           
+
         }
-        .owner-title{
-            h4{
+
+        .owner-title {
+            h4 {
                 color: white;
             }
-            
+
         }
-        .owner-details{
-            .detail-item{
-                span{
+
+        .owner-details {
+            .detail-item {
+                span {
                     color: white;
                 }
-                strong{
+
+                strong {
                     color: white;
                 }
             }
         }
-        .title-sec{
-            .user-title{
+
+        .title-sec {
+            .user-title {
                 color: white;
             }
-            .checkbox-wrapper{
-                .user{
+
+            .checkbox-wrapper {
+                .user {
                     color: white;
                 }
-                .css-1umw9bq-MuiSvgIcon-root{
+
+                .css-1umw9bq-MuiSvgIcon-root {
                     fill: white;
                 }
             }
         }
-        .user-list-container{
+
+        .user-list-container {
             border: 2px solid white;
-            .user-list{
-                .user-row{
-                    .user-number{
+
+            .user-list {
+                .user-row {
+                    .user-number {
                         color: white;
                     }
-                    .user-details{
-                        .user-info{
-                            p{
-                                color:white;
-                            }
-                        }
-                        .user-meta{
-                            p{
+
+                    .user-details {
+                        .user-info {
+                            p {
                                 color: white;
                             }
+                        }
+
+                        .user-meta {
+                            p {
+                                color: white;
+                            }
+
                             .css-1umw9bq-MuiSvgIcon-root {
                                 fill: white;
                             }
@@ -78,7 +91,7 @@
             }
         }
     }
-    
+
     .right-title {
         position: relative;
 
@@ -166,13 +179,13 @@
             span {
                 display: flex;
                 font-size: 13px;
-                color:variables.$default-colr;
+                color: variables.$default-colr;
                 text-wrap: nowrap;
                 font-weight: 700;
             }
 
             strong {
-                color:variables.$default-colr;
+                color: variables.$default-colr;
                 font-size: 10px;
                 font-weight: 500;
                 // text-wrap: nowrap;
@@ -192,7 +205,7 @@
         position: relative;
 
         h4 {
-            color:variables.$default-colr;
+            color: variables.$default-colr;
             position: absolute;
             // text-decoration: underline;
             top: -10px;
@@ -270,13 +283,13 @@
             span {
                 display: flex;
                 font-size: 10px;
-                color:variables.$default-colr;
+                color: variables.$default-colr;
                 text-wrap: nowrap;
                 font-weight: 700;
             }
 
             strong {
-                color:variables.$default-colr;
+                color: variables.$default-colr;
                 font-size: 10px;
                 font-weight: 500;
             }
@@ -310,10 +323,11 @@
 
             .user {
                 // padding-left: 85px;
-                color:variables.$default-colr;
+                color: variables.$default-colr;
                 margin-top: 7px;
             }
-            .css-1umw9bq-MuiSvgIcon-root{
+
+            .css-1umw9bq-MuiSvgIcon-root {
                 fill: currentColor;
             }
 
@@ -374,14 +388,14 @@
                     width: 30px;
                     text-align: center;
                     font-weight: bold;
-                    color:variables.$default-colr;
+                    color: variables.$default-colr;
                 }
 
                 .user-details {
                     flex-grow: 1;
                     display: flex;
                     justify-content: space-between;
-                    color:variables.$secondary-color;
+                    color: variables.$secondary-color;
 
                     .user-info,
                     .user-meta {
@@ -393,12 +407,12 @@
 
                         p {
                             margin: 8px 0;
-                            color:variables.$default-colr;
+                            color: variables.$default-colr;
                             font-size: 13px;
                         }
 
                         a {
-                            color:variables.$primary-color;
+                            color: variables.$primary-color;
                             text-decoration: none;
                         }
 
@@ -409,7 +423,7 @@
                     }
 
                     .user-name {
-                        color:variables.$text-color;
+                        color: variables.$text-color;
                     }
 
                     // .user-mail {
@@ -420,7 +434,7 @@
 
                     .remove-option {
                         label {
-                            color:variables.$highlight-color;
+                            color: variables.$highlight-color;
                             font-size: 0.85rem;
 
                             .custom-checkbox {
@@ -453,8 +467,8 @@
         margin-top: 7px;
 
         .review-complete {
-            background-color:variables.$btn-color;
-            color:variables.$secondary-color;
+            background-color: variables.$btn-color;
+            color: variables.$secondary-color;
             padding: 8px 16px;
             border-radius: 12px;
             border: none;
@@ -516,20 +530,103 @@
     }
 }
 
+
+
 @media screen and (max-width:breakpoints.$screen-xl) {
     .software-package-details {
+
+        .title-sec {
+            .user-title {
+                top: -10px;
+                font-size: 13px;
+            }
+
+            .checkbox-wrapper {
+                margin-top: -7px;
+                .css-1umw9bq-MuiSvgIcon-root {
+                    font-size: 15px;
+                }
+
+                .user {
+                    font-size: 13px;
+                }
+            }
+        }
+
         .package-detail {
-            gap: 15px;
+            gap: 5px;
             flex-wrap: wrap;
+            margin-top: -55px;
 
             .detail-item {
+                gap: 0px;
 
                 .ad,
                 .ad-str {
                     margin-left: 0;
                 }
+
+                input {
+                    height: 15px;
+                }
+                span{
+                    font-size: 10px;
+                }
             }
         }
+
+        .owner-title {
+            h4 {
+                top: -13px;
+            }
+        }
+
+        .owner-details {
+            margin-top: 27px;
+            gap: 15px;
+
+            .detail-item {
+                gap: 0px;
+
+                input {
+                    height: 15px;
+                }
+            }
+        }
+
+        .right-title {
+            h3 {
+                font-size: 15px;
+                margin-top: 3px;
+            }
+        }
+
+        .user-list-container {
+            max-height: 63px;
+            margin-top: -4px;
+            .user-list {
+
+                .user-row {
+
+                    .user-details {
+
+                        .user-info {
+                            p {
+                                font-size: 10px;
+                            }
+                        }
+
+                        .remove-option {
+                            label {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
 

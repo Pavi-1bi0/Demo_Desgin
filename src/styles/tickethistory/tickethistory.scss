@@ -118,6 +118,20 @@
     }
 }
 
+@media screen and (max-width:breakpoints.$screen-xl){
+    .tickect-page{
+        .header{
+            h2{
+                font-size: 15px;
+            }
+        }
+        .ticket-history-container{
+            min-height: 90px;
+            height: 0%;
+        }
+    }
+}
+
 @media screen and (max-width:breakpoints.$screen-xl-min) {
     .tickect-page {
         width: 95%;
